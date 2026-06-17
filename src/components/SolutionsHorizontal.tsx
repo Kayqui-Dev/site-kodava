@@ -50,7 +50,6 @@ export default function SolutionsHorizontal() {
   const xSpring = useSpring(x, { stiffness: 70, damping: 20, mass: 0.6 });
 
   // Transform scroll progress into individual card wipe effects (clip path)
-  // Let's create clip paths that swipe open as they scroll
   const card1Clip = useTransform(scrollYProgress, [0.1, 0.25], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
   const card2Clip = useTransform(scrollYProgress, [0.25, 0.45], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
   const card3Clip = useTransform(scrollYProgress, [0.45, 0.65], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
@@ -64,16 +63,19 @@ export default function SolutionsHorizontal() {
         Desktop / Sticky Scroll Container
         Only active on md screens and above.
       */}
-      <div ref={targetRef} className="hidden md:block relative h-[350vh] bg-bg">
+      <div ref={targetRef} className="hidden md:block relative h-[350vh] bg-black">
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
           
+          {/* Subtle Ambient Glow behind the horizontal track */}
+          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-brand-blue/[0.03] rounded-full blur-[140px] pointer-events-none z-0" />
+
           {/* Header Area */}
-          <div className="max-w-7xl mx-auto px-12 w-full mb-12 flex justify-between items-end">
+          <div className="max-w-7xl mx-auto px-12 w-full mb-12 flex justify-between items-end relative z-10">
             <div className="flex flex-col gap-3">
               <span className="text-xs font-mono tracking-widest text-brand-blue uppercase">
                 [ 02 // ENGENHARIA DE SOLUÇÕES ]
               </span>
-              <h2 className="font-serif font-black text-4xl lg:text-5xl text-gray-100 leading-tight">
+              <h2 className="font-serif font-black text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
                 Arquitetura de <br />IA Customizada.
               </h2>
             </div>
@@ -81,12 +83,12 @@ export default function SolutionsHorizontal() {
               <span className="text-[10px] font-mono text-gray-500 uppercase">
                 SCROLL VERTICAL // REVELAÇÃO HORIZONTAL
               </span>
-              <p className="text-xs font-mono text-brand-cyan mt-1">// ROTACIONE PARA A ESQUERDA</p>
+              <p className="text-xs font-mono text-brand-cyan mt-1">// DESLIZE DA DIREITA PARA A ESQUERDA</p>
             </div>
           </div>
 
           {/* Sliding Track */}
-          <div className="flex items-center w-full px-12">
+          <div className="flex items-center w-full px-12 relative z-10">
             <motion.div 
               style={{ x: xSpring }} 
               className="flex gap-8 pr-[30vw]"
@@ -97,14 +99,14 @@ export default function SolutionsHorizontal() {
                   <motion.div
                     key={service.title}
                     style={{ clipPath: clips[index] }}
-                    className="w-[420px] h-[380px] flex-shrink-0 glass-card p-10 rounded-lg flex flex-col justify-between border-brand-cyan/20 group hover:border-brand-cyan/40 transition-colors duration-300 relative overflow-hidden"
+                    className="w-[420px] h-[380px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-10 rounded-lg flex flex-col justify-between group hover:border-white/10 transition-colors duration-300 relative overflow-hidden"
                   >
                     {/* Glowing highlight in background */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/5 rounded-full blur-2xl group-hover:bg-brand-cyan/10 transition-colors" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/[0.03] rounded-full blur-2xl group-hover:bg-brand-cyan/[0.05] transition-colors" />
 
                     <div className="flex flex-col gap-6">
                       <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded bg-brand-cyan/5 border border-brand-cyan/20 flex items-center justify-center group-hover:border-brand-cyan/40 transition-colors">
+                        <div className="w-12 h-12 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:border-brand-cyan/20 transition-colors">
                           <Icon className="w-6 h-6 text-brand-cyan text-glow-blue" />
                         </div>
                         <span className="text-[10px] font-mono text-gray-500 tracking-widest">
@@ -122,7 +124,7 @@ export default function SolutionsHorizontal() {
                       </div>
                     </div>
 
-                    <div className="pt-6 border-t border-gray-800/60 flex justify-between items-center">
+                    <div className="pt-6 border-t border-white/5 flex justify-between items-center">
                       <span className="text-[9px] font-mono text-brand-cyan tracking-widest uppercase font-bold">
                         {service.tech}
                       </span>
@@ -143,7 +145,7 @@ export default function SolutionsHorizontal() {
         Mobile / Touch Responsive Layout
         Turns into a smooth horizontal touch scroller.
       */}
-      <div className="md:hidden py-16 px-6 bg-bg flex flex-col gap-8">
+      <div className="md:hidden py-16 px-6 bg-black flex flex-col gap-8">
         <div className="flex flex-col gap-3">
           <span className="text-xs font-mono tracking-widest text-brand-blue uppercase">
             [ 02 // ENGENHARIA DE SOLUÇÕES ]
@@ -160,11 +162,11 @@ export default function SolutionsHorizontal() {
             return (
               <div
                 key={service.title}
-                className="w-[300px] h-[340px] flex-shrink-0 glass-card p-8 rounded-lg flex flex-col justify-between border-brand-cyan/20 snap-center"
+                className="w-[300px] h-[340px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-8 rounded-lg flex flex-col justify-between snap-center"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded bg-brand-cyan/5 border border-brand-cyan/20 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-brand-cyan" />
                     </div>
                     <span className="text-[9px] font-mono text-gray-500 tracking-widest">
@@ -182,7 +184,7 @@ export default function SolutionsHorizontal() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-800/60 flex justify-between items-center">
+                <div className="pt-4 border-t border-white/5 flex justify-between items-center">
                   <span className="text-[8px] font-mono text-brand-cyan tracking-widest uppercase font-bold">
                     {service.tech}
                   </span>

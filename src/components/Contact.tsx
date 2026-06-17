@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Send, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Contact() {
@@ -28,22 +27,23 @@ export default function Contact() {
   };
 
   return (
-    <section id="contato" className="relative py-24 bg-bg border-t border-gray-900/50">
+    <section id="contato" className="relative py-24 bg-black border-t border-white/5">
       
-      <div className="absolute top-1/3 right-10 w-96 h-96 bg-brand-blue/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-96 h-96 bg-brand-blue/[0.01] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         
         {/* Header */}
-        <div className="max-w-3xl mb-16 flex flex-col gap-4">
-          <span className="text-xs font-mono tracking-widest text-brand-blue uppercase">
+        <div className="max-w-3xl mb-16 flex flex-col gap-4 relative">
+          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,168,255,0.03),transparent_60%)] pointer-events-none z-0" />
+          <span className="text-xs font-mono tracking-widest text-brand-blue uppercase relative z-10">
             [ 05 // CONECTAR INFRAESTRUTURA ]
           </span>
-          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-gray-100 leading-tight">
+          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
             Inicie Seu Projeto <br />
             de Inteligência Artificial.
           </h2>
-          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl">
+          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl relative z-10">
             Preencha os parâmetros abaixo para abrir um canal direto com nossa equipe de engenharia.
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function Contact() {
           
           {/* Info Side */}
           <div className="lg:col-span-5 flex flex-col gap-8">
-            <div className="glass-card p-8 rounded-lg flex flex-col gap-6">
+            <div className="bg-white/[0.01] border border-white/5 p-8 rounded-lg flex flex-col gap-6">
               <span className="text-[10px] font-mono text-brand-blue tracking-widest font-bold uppercase">
                 // COMPILANDO INFORMAÇÕES
               </span>
@@ -85,7 +85,7 @@ export default function Contact() {
               </p>
               <button 
                 onClick={handleWhatsAppRedirect}
-                className="w-full text-center text-xs font-mono tracking-widest text-brand-green border border-brand-green/35 py-3.5 rounded hover:bg-brand-green hover:text-bg hover:shadow-[0_0_20px_rgba(0,255,204,0.45)] transition-all duration-300 font-bold"
+                className="w-full text-center text-xs font-mono tracking-widest text-brand-green border border-brand-green/35 py-3.5 rounded hover:bg-brand-green hover:text-bg hover:shadow-[0_0_20px_rgba(0,255,204,0.45)] transition-all duration-300 font-bold cursor-pointer"
               >
                 [ CONECTAR WHATSAPP ]
               </button>
@@ -94,7 +94,7 @@ export default function Contact() {
 
           {/* Form Side */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="glass-card p-8 rounded-lg flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="bg-white/[0.01] border border-white/5 p-8 rounded-lg flex flex-col gap-6">
               <span className="text-[10px] font-mono text-gray-500 uppercase">// NOVO TICKET DE PROJETO</span>
 
               <div className="flex flex-col gap-2">
@@ -105,7 +105,7 @@ export default function Contact() {
                   placeholder="EX: MATEUS SILVA"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-gray-950/40 border border-gray-800 focus:border-brand-blue text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
                 />
               </div>
 
@@ -117,7 +117,7 @@ export default function Contact() {
                   placeholder="EX: MATEUS@SUAEMPRESA.COM"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-gray-950/40 border border-gray-800 focus:border-brand-blue text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
                 />
               </div>
 
@@ -129,16 +129,15 @@ export default function Contact() {
                   placeholder="EX: PRECISO DE UM SISTEMA ESPECIALISTA PARA ANALISAR CONTRATOS..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-gray-950/40 border border-gray-800 focus:border-brand-blue text-xs font-mono text-gray-100 p-4 outline-none rounded resize-none transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded resize-none transition-colors"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-brand-blue text-bg py-4 rounded font-bold hover:bg-brand-cyan hover:shadow-[0_0_20px_rgba(0,168,255,0.4)] transition-all duration-300 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black py-4 rounded font-bold hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 cursor-pointer"
               >
                 {isSent ? 'TICKET TRANSMITIDO!' : 'TRANSMITIR PARÂMETROS'}
-                <Send className="w-4 h-4" />
               </button>
 
               {isSent && (
@@ -152,7 +151,7 @@ export default function Contact() {
         </div>
 
         {/* Footer info */}
-        <div className="mt-24 pt-8 border-t border-gray-900/60 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <span className="text-[10px] font-mono text-gray-500 uppercase">
             © 2026 KODAVA SOLUTIONS. TODOS OS DIREITOS RESERVADOS.
           </span>

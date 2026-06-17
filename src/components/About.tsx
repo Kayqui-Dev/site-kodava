@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Target, Zap, Rocket } from 'lucide-react';
 
 const blocks = [
@@ -23,26 +22,27 @@ const blocks = [
 
 export default function About() {
   return (
-    <section id="sobre" className="relative py-24 bg-bg border-t border-gray-900/50">
-      <div className="absolute top-1/4 left-10 w-80 h-80 bg-brand-green/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="sobre" className="relative py-24 bg-black border-t border-white/5">
+      <div className="absolute top-1/4 left-10 w-80 h-80 bg-brand-green/[0.01] rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Text Area */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <span className="text-xs font-mono tracking-widest text-brand-green uppercase">
+          <div className="lg:col-span-5 flex flex-col gap-6 relative">
+            <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,168,255,0.03),transparent_60%)] pointer-events-none z-0" />
+            <span className="text-xs font-mono tracking-widest text-brand-green uppercase relative z-10">
               [ 04 // SOBRE NÓS ]
             </span>
-            <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-gray-100 leading-tight">
+            <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
               Inovação Pragmática e Entrega de Alto Valor.
             </h2>
-            <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed">
+            <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed relative z-10">
               A Kodava Solutions nasceu para aproximar a engenharia de ponta das reais necessidades de negócios. 
               Substituímos complexidade desnecessária por ecossistemas robustos de código limpo e inteligência autônoma.
             </p>
-            <div className="mt-4 p-6 border border-gray-800/80 rounded bg-gray-950/20 font-mono text-[10px] text-gray-400 leading-normal uppercase">
+            <div className="mt-4 p-6 border border-white/5 rounded bg-white/[0.01] font-mono text-[10px] text-gray-400 leading-normal uppercase relative z-10">
               // NOSSO MANIFESTO: CÓDIGO PROJETADO PARA DURAR, MODELOS PROJETADOS PARA APRENDER, PROCESSO FOCADO EM RESULTADOS DE NEGÓCIO.
             </div>
           </div>
@@ -52,11 +52,11 @@ export default function About() {
             {blocks.map((block, idx) => (
               <div 
                 key={block.title}
-                className={`glass-card hover:border-brand-green/30 transition-all duration-300 p-8 rounded-lg flex flex-col gap-4 ${
+                className={`bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all duration-300 p-8 rounded-lg flex flex-col gap-4 ${
                   idx === 2 ? 'sm:col-span-2' : ''
                 }`}
               >
-                <div className="w-10 h-10 rounded bg-brand-green/5 border border-brand-green/20 flex items-center justify-center">
+                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
                   <block.icon className="w-5 h-5 text-brand-green" />
                 </div>
                 <h3 className="font-serif font-bold text-lg text-gray-200">{block.title}</h3>

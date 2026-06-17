@@ -44,19 +44,20 @@ const cardVariants = {
 
 export default function Positioning() {
   return (
-    <section id="diferenciais" className="relative py-24 bg-bg overflow-hidden border-t border-gray-900/50">
+    <section id="diferenciais" className="relative py-24 bg-black overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         
         {/* Header Section */}
-        <div className="max-w-3xl mb-16 flex flex-col gap-4">
-          <span className="text-xs font-mono tracking-widest text-brand-green uppercase">
+        <div className="max-w-3xl mb-16 flex flex-col gap-4 relative">
+          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,168,255,0.03),transparent_60%)] pointer-events-none z-0" />
+          <span className="text-xs font-mono tracking-widest text-brand-green uppercase relative z-10">
             [ 01 // NOSSO POSICIONAMENTO ]
           </span>
-          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-gray-100 leading-tight">
+          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
             Engenharia de IA Real. <br />
             Sem Wrappers, Sem Atalhos.
           </h2>
-          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl">
+          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl relative z-10">
             A maioria das empresas vende apenas interfaces bonitas conectadas ao ChatGPT. 
             Na Kodava, nós desenvolvemos a inteligência de fundo.
           </p>
@@ -74,10 +75,10 @@ export default function Positioning() {
             <motion.div
               key={block.title}
               variants={cardVariants}
-              className="glass-card hover:border-brand-blue/30 transition-all duration-300 p-8 rounded-lg flex flex-col justify-between group"
+              className="bg-white/[0.01] border border-white/5 hover:border-white/10 transition-all duration-300 p-8 rounded-lg flex flex-col justify-between group"
             >
               <div className="flex flex-col gap-6">
-                <div className="w-12 h-12 rounded bg-brand-blue/5 border border-brand-blue/20 flex items-center justify-center group-hover:border-brand-blue/40 transition-colors">
+                <div className="w-12 h-12 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:border-brand-blue/20 transition-colors">
                   <block.icon className="w-6 h-6 text-brand-blue" />
                 </div>
                 <div className="flex flex-col gap-2">
@@ -93,7 +94,7 @@ export default function Positioning() {
                 </p>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-gray-800/40 flex items-center gap-2">
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brand-green" />
                 <span className="text-[10px] font-mono text-brand-green tracking-widest uppercase">PROPRIETARY SECURITY READY</span>
               </div>
@@ -102,7 +103,7 @@ export default function Positioning() {
         </motion.div>
 
         {/* Asymmetrical Quote */}
-        <div className="mt-20 p-8 border-l-2 border-brand-blue bg-brand-blue/[0.02] max-w-4xl rounded-r-lg">
+        <div className="mt-20 p-8 border-l border-white/10 bg-white/[0.01] max-w-4xl rounded-r-lg">
           <p className="font-serif italic text-lg sm:text-xl text-gray-300 leading-relaxed">
             "Wrappers de API expõem seu segredo de negócio e estão reféns de atualizações de terceiros. 
             Criar sua própria infraestrutura de IA protege sua propriedade intelectual e garante soberania tecnológica definitiva."

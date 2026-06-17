@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #030712;
-  --color-card-bg: rgba(10, 15, 30, 0.45);
+  --color-bg: #000000; /* Pure Black Canvas */
+  --color-card-bg: rgba(8, 8, 10, 0.45);
   --color-brand-blue: #00a8ff;
   --color-brand-cyan: #00e5ff;
   --color-brand-green: #00ffcc;
-  --color-border-accent: rgba(0, 168, 255, 0.15);
-  --color-border-accent-green: rgba(0, 255, 204, 0.15);
+  --color-border-accent: rgba(255, 255, 255, 0.07); /* Micro border */
+  --color-border-accent-green: rgba(0, 255, 204, 0.07);
   
   --font-serif: var(--font-serif), serif;
   --font-mono: var(--font-mono), monospace;
