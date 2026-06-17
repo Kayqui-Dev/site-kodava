@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Fraunces } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
-import SmoothScroll from '@/components/SmoothScroll';
-import ThreeBackground from '@/components/ThreeBackground';
 
 const geistSans = Geist({
   variable: '--font-sans',
@@ -15,18 +12,11 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-const fraunces = Fraunces({
-  variable: '--font-serif',
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  style: ['normal', 'italic'],
-});
-
 export const metadata: Metadata = {
   title: 'Kodava Solutions | Sistemas de Inteligência Artificial Sob Medida',
   description:
     'Desenvolvimento de inteligência artificial proprietária e sob medida. Criamos agentes autônomos, prompt engineering avançado e automação inteligente de processos para o seu negócio.',
-  keywords: 'Kodava Solutions, Inteligência Artificial Customizada, Agentes de IA, Automação, Next.js, Framer Motion',
+  keywords: 'Kodava Solutions, Inteligência Artificial Customizada, Agentes de IA, Automação, Next.js',
   authors: [{ name: 'Kodava Solutions' }],
   openGraph: {
     title: 'Kodava Solutions | Sistemas de Inteligência Artificial Sob Medida',
@@ -42,13 +32,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} scroll-smooth`}>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
       <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-primary selection:text-bg">
-        <ThreeBackground />
-        <SmoothScroll>
-          <Header />
-          {children}
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );
