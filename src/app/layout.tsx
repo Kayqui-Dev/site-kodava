@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -13,6 +13,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
+});
+
+const fraunces = Fraunces({
+  variable: '--font-serif',
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-primary selection:text-bg">
         <ThreeBackground />
         <SmoothScroll>
