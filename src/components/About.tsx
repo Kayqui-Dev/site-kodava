@@ -35,14 +35,14 @@ export default function About() {
             <span className="text-xs font-mono tracking-widest text-brand-green uppercase relative z-10">
               [ 04 // SOBRE NÓS ]
             </span>
-            <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
+            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
               Inovação Pragmática e Entrega de Alto Valor.
             </h2>
-            <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed relative z-10">
+            <p className="font-sans text-sm text-gray-400 leading-relaxed relative z-10">
               A Kodava Solutions nasceu para aproximar a engenharia de ponta das reais necessidades de negócios. 
               Substituímos complexidade desnecessária por ecossistemas robustos de código limpo e inteligência autônoma.
             </p>
-            <div className="mt-4 p-6 border border-white/5 rounded bg-white/[0.01] font-mono text-[10px] text-gray-400 leading-normal uppercase relative z-10">
+            <div className="mt-4 p-6 border border-white/5 rounded-md bg-white/[0.01] font-mono text-[10px] text-gray-400 leading-normal uppercase relative z-10">
               // NOSSO MANIFESTO: CÓDIGO PROJETADO PARA DURAR, MODELOS PROJETADOS PARA APRENDER, PROCESSO FOCADO EM RESULTADOS DE NEGÓCIO.
             </div>
           </div>
@@ -56,11 +56,11 @@ export default function About() {
                   idx === 2 ? 'sm:col-span-2' : ''
                 }`}
               >
-                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-md bg-white/[0.02] border border-white/5 flex items-center justify-center">
                   <block.icon className="w-5 h-5 text-brand-green" />
                 </div>
-                <h3 className="font-serif font-bold text-lg text-gray-200">{block.title}</h3>
-                <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed">{block.desc}</p>
+                <h3 className="font-sans font-bold text-lg text-gray-200">{block.title}</h3>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">{block.desc}</p>
               </div>
             ))}
           </div>

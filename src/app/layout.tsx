@@ -1,13 +1,11 @@
 import type { Metadata } from 'next';
-import { Fraunces, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 
-const fraunces = Fraunces({
-  variable: '--font-serif',
+const geistSans = Geist({
+  variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  style: ['normal', 'italic'],
 });
 
 const geistMono = Geist_Mono({
@@ -35,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${fraunces.variable} ${geistMono.variable} scroll-smooth`}>
-      <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-blue selection:text-bg">
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+      <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-primary selection:text-bg">
         <Header />
         {children}
       </body>

@@ -58,7 +58,7 @@ export default function SolutionsHorizontal() {
   const clips = [card1Clip, card2Clip, card3Clip, card4Clip];
 
   return (
-    <div className="relative">
+    <div id="servicos" className="relative">
       {/* 
         Desktop / Sticky Scroll Container
         Only active on md screens and above.
@@ -67,15 +67,15 @@ export default function SolutionsHorizontal() {
         <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
           
           {/* Subtle Ambient Glow behind the horizontal track */}
-          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-brand-blue/[0.03] rounded-full blur-[140px] pointer-events-none z-0" />
+          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-brand-primary/[0.02] rounded-full blur-[140px] pointer-events-none z-0" />
 
           {/* Header Area */}
           <div className="max-w-7xl mx-auto px-12 w-full mb-12 flex justify-between items-end relative z-10">
             <div className="flex flex-col gap-3">
-              <span className="text-xs font-mono tracking-widest text-brand-blue uppercase">
+              <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
                 [ 02 // ENGENHARIA DE SOLUÇÕES ]
               </span>
-              <h2 className="font-serif font-black text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
+              <h2 className="font-sans font-extrabold text-4xl lg:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
                 Arquitetura de <br />IA Customizada.
               </h2>
             </div>
@@ -83,7 +83,7 @@ export default function SolutionsHorizontal() {
               <span className="text-[10px] font-mono text-gray-500 uppercase">
                 SCROLL VERTICAL // REVELAÇÃO HORIZONTAL
               </span>
-              <p className="text-xs font-mono text-brand-cyan mt-1">// DESLIZE DA DIREITA PARA A ESQUERDA</p>
+              <p className="text-xs font-mono text-brand-secondary mt-1">// DESLIZE DA DIREITA PARA A ESQUERDA</p>
             </div>
           </div>
 
@@ -99,15 +99,15 @@ export default function SolutionsHorizontal() {
                   <motion.div
                     key={service.title}
                     style={{ clipPath: clips[index] }}
-                    className="w-[420px] h-[380px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-10 rounded-lg flex flex-col justify-between group hover:border-white/10 transition-colors duration-300 relative overflow-hidden"
+                    className="w-[420px] h-[380px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-10 rounded-lg flex flex-col justify-between group hover:border-brand-primary/20 transition-colors duration-300 relative overflow-hidden"
                   >
                     {/* Glowing highlight in background */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/[0.03] rounded-full blur-2xl group-hover:bg-brand-cyan/[0.05] transition-colors" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/[0.02] rounded-full blur-2xl group-hover:bg-brand-secondary/[0.04] transition-colors" />
 
                     <div className="flex flex-col gap-6">
                       <div className="flex items-center justify-between">
-                        <div className="w-12 h-12 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:border-brand-cyan/20 transition-colors">
-                          <Icon className="w-6 h-6 text-brand-cyan text-glow-blue" />
+                        <div className="w-12 h-12 rounded-md bg-white/[0.02] border border-white/5 flex items-center justify-center group-hover:border-brand-secondary/20 transition-colors">
+                          <Icon className="w-6 h-6 text-brand-secondary text-glow-blue" />
                         </div>
                         <span className="text-[10px] font-mono text-gray-500 tracking-widest">
                           {service.label}
@@ -115,17 +115,17 @@ export default function SolutionsHorizontal() {
                       </div>
 
                       <div className="flex flex-col gap-3">
-                        <h3 className="font-serif font-bold text-2xl text-gray-200">
+                        <h3 className="font-sans font-bold text-2xl text-gray-200">
                           {service.title}
                         </h3>
-                        <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed">
+                        <p className="font-sans text-xs text-gray-400 leading-relaxed">
                           {service.desc}
                         </p>
                       </div>
                     </div>
 
                     <div className="pt-6 border-t border-white/5 flex justify-between items-center">
-                      <span className="text-[9px] font-mono text-brand-cyan tracking-widest uppercase font-bold">
+                      <span className="text-[9px] font-mono text-brand-secondary tracking-widest uppercase font-bold">
                         {service.tech}
                       </span>
                       <span className="text-[9px] font-mono text-gray-500 uppercase">
@@ -147,10 +147,10 @@ export default function SolutionsHorizontal() {
       */}
       <div className="md:hidden py-16 px-6 bg-black flex flex-col gap-8">
         <div className="flex flex-col gap-3">
-          <span className="text-xs font-mono tracking-widest text-brand-blue uppercase">
+          <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
             [ 02 // ENGENHARIA DE SOLUÇÕES ]
           </span>
-          <h2 className="font-serif font-black text-3xl text-gray-100 leading-tight">
+          <h2 className="font-sans font-extrabold text-3xl text-gray-100 leading-tight">
             Arquitetura de <br />IA Customizada.
           </h2>
         </div>
@@ -166,8 +166,8 @@ export default function SolutionsHorizontal() {
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-brand-cyan" />
+                    <div className="w-10 h-10 rounded-md bg-white/[0.02] border border-white/5 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-brand-secondary" />
                     </div>
                     <span className="text-[9px] font-mono text-gray-500 tracking-widest">
                       {service.label}
@@ -175,17 +175,17 @@ export default function SolutionsHorizontal() {
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <h3 className="font-serif font-bold text-lg text-gray-200">
+                    <h3 className="font-sans font-bold text-lg text-gray-200">
                       {service.title}
                     </h3>
-                    <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                    <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                       {service.desc}
                     </p>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                  <span className="text-[8px] font-mono text-brand-cyan tracking-widest uppercase font-bold">
+                  <span className="text-[8px] font-mono text-brand-secondary tracking-widest uppercase font-bold">
                     {service.tech}
                   </span>
                   <span className="text-[8px] font-mono text-gray-500 uppercase">

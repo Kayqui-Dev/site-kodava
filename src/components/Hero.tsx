@@ -17,10 +17,10 @@ export default function Hero() {
   // Spring physics setup for weighty, organic scrolling motion
   const springConfig = { stiffness: 90, damping: 25, mass: 0.4 };
   
-  const headlineY = useSpring(useTransform(scrollY, [0, 800], [0, -90]), springConfig);
-  const splineY = useSpring(useTransform(scrollY, [0, 800], [0, 80]), springConfig);
+  const headlineY = useSpring(useTransform(scrollY, [0, 800], [0, -110]), springConfig);
+  const splineY = useSpring(useTransform(scrollY, [0, 800], [0, 85]), springConfig);
   const backgroundY = useSpring(useTransform(scrollY, [0, 800], [0, 40]), springConfig);
-  const opacityFade = useTransform(scrollY, [0, 500], [1, 0]);
+  const opacityFade = useTransform(scrollY, [0, 600], [1, 0]);
 
   return (
     <section 
@@ -31,41 +31,41 @@ export default function Hero() {
       {/* Background Grid Overlay with Parallax */}
       <motion.div 
         style={{ y: backgroundY }}
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none" 
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none" 
       />
 
-      {/* Glow shapes */}
-      <div className="absolute top-20 right-1/4 w-[450px] h-[450px] bg-brand-blue/[0.04] rounded-full blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-brand-green/[0.02] rounded-full blur-[100px] pointer-events-none z-0" />
+      {/* Glow shapes matching the logo colors */}
+      <div className="absolute top-20 right-1/4 w-[450px] h-[450px] bg-brand-primary/[0.04] rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-brand-secondary/[0.02] rounded-full blur-[100px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
         {/* Text Area (with Spring Parallax) */}
         <motion.div 
           style={{ y: headlineY, opacity: opacityFade }}
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -35 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="lg:col-span-7 flex flex-col gap-6 relative"
         >
-          {/* Subtle Ambient Radial Glow behind the main headline */}
-          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,168,255,0.05),transparent_60%)] pointer-events-none z-0" />
+          {/* Ambient radial glow */}
+          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,132,255,0.04),transparent_60%)] pointer-events-none z-0" />
 
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 max-w-fit relative z-10">
-            <Cpu className="w-3.5 h-3.5 text-brand-blue" />
+            <Cpu className="w-3.5 h-3.5 text-brand-primary" />
             <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
               // IA proprietária e infraestrutura dedicada
             </span>
           </div>
 
-          <h1 className="font-serif font-black text-4xl sm:text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-500 leading-[1.05] tracking-tighter relative z-10">
+          <h1 className="font-sans font-extrabold text-5xl md:text-7xl leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-brand-primary relative z-10">
             Arquitetura de IA <br />
             Proprietária sob Medida.
           </h1>
 
-          <p className="font-mono text-xs sm:text-sm text-gray-400 max-w-2xl leading-relaxed uppercase relative z-10">
+          <p className="font-sans text-sm md:text-base text-gray-400 max-w-2xl leading-relaxed relative z-10">
             Diferente de simples wrappers que apenas repassam dados para APIs de terceiros, a{' '}
-            <span className="text-brand-blue">Kodava Solutions</span> constrói ecossistemas de IA
+            <span className="text-brand-primary font-semibold text-glow-blue">Kodava Solutions</span> constrói ecossistemas de IA
             dedicados, treinados diretamente na sua base de conhecimento corporativa e integrados de forma
             100% segura à sua infraestrutura.
           </p>
@@ -73,7 +73,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 mt-4 relative z-10">
             <a
               href="#contato"
-              className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black px-8 py-4 rounded font-bold hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 group"
+              className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black px-8 py-4 rounded-md hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 group"
             >
               FALAR COM ESPECIALISTA
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -81,7 +81,7 @@ export default function Hero() {
             
             <a
               href="#diferenciais"
-              className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest border border-white/5 text-gray-400 hover:text-white hover:border-white/10 px-8 py-4 rounded transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest border border-white/10 text-gray-400 hover:text-white hover:border-white/20 px-8 py-4 rounded-md transition-all duration-300"
             >
               NOSSOS DIFERENCIAIS
             </a>
@@ -90,7 +90,7 @@ export default function Hero() {
           {/* Core tech tags */}
           <div className="grid grid-cols-3 gap-6 pt-10 border-t border-white/5 max-w-xl relative z-10">
             <div className="flex flex-col gap-2">
-              <Bot className="w-5 h-5 text-brand-blue" />
+              <Bot className="w-5 h-5 text-brand-primary" />
               <span className="text-[10px] font-mono tracking-widest text-gray-500 uppercase">MODELS:</span>
               <span className="text-xs font-mono text-gray-200 font-bold uppercase">TREINAMENTO DE REDES</span>
             </div>
@@ -100,7 +100,7 @@ export default function Hero() {
               <span className="text-xs font-mono text-gray-200 font-bold uppercase">INFRA PRIVADA & LGPD</span>
             </div>
             <div className="flex flex-col gap-2">
-              <Cpu className="w-5 h-5 text-brand-cyan" />
+              <Cpu className="w-5 h-5 text-brand-secondary" />
               <span className="text-[10px] font-mono tracking-widest text-gray-500 uppercase">SPEED:</span>
               <span className="text-xs font-mono text-gray-200 font-bold uppercase">SISTEMAS AUTÔNOMOS</span>
             </div>

@@ -53,11 +53,11 @@ export default function Positioning() {
           <span className="text-xs font-mono tracking-widest text-brand-green uppercase relative z-10">
             [ 01 // NOSSO POSICIONAMENTO ]
           </span>
-          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
+          <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
             Engenharia de IA Real. <br />
             Sem Wrappers, Sem Atalhos.
           </h2>
-          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl relative z-10">
+          <p className="font-sans text-sm text-gray-400 leading-relaxed max-w-xl relative z-10">
             A maioria das empresas vende apenas interfaces bonitas conectadas ao ChatGPT. 
             Na Kodava, nós desenvolvemos a inteligência de fundo.
           </p>
@@ -85,11 +85,11 @@ export default function Positioning() {
                   <span className="text-[10px] font-mono text-brand-blue tracking-widest font-bold">
                     {block.label}
                   </span>
-                  <h3 className="font-serif font-bold text-xl text-gray-200">
+                  <h3 className="font-sans font-bold text-xl text-gray-200">
                     {block.title}
                   </h3>
                 </div>
-                <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed">
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">
                   {block.desc}
                 </p>
               </div>
@@ -104,7 +104,7 @@ export default function Positioning() {
 
         {/* Asymmetrical Quote */}
         <div className="mt-20 p-8 border-l border-white/10 bg-white/[0.01] max-w-4xl rounded-r-lg">
-          <p className="font-serif italic text-lg sm:text-xl text-gray-300 leading-relaxed">
+          <p className="font-sans italic text-lg sm:text-xl text-gray-300 leading-relaxed">
             "Wrappers de API expõem seu segredo de negócio e estão reféns de atualizações de terceiros. 
             Criar sua própria infraestrutura de IA protege sua propriedade intelectual e garante soberania tecnológica definitiva."
           </p>

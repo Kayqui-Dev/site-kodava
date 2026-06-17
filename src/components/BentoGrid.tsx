@@ -11,7 +11,7 @@ interface Card3DProps {
 }
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
-function Card3D({ children, className = '', glowColor = 'rgba(255, 255, 255, 0.05)' }: Card3DProps) {
+function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)' }: Card3DProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   
   // Motion values for mouse coordinates (percentage 0 to 1)
@@ -62,7 +62,7 @@ function Card3D({ children, className = '', glowColor = 'rgba(255, 255, 255, 0.0
         rotateY,
         transformStyle: 'preserve-3d',
       }}
-      className={`bg-white/[0.01] border border-white/5 rounded-lg overflow-hidden relative transition-all duration-300 ${className}`}
+      className={`backdrop-blur-md bg-zinc-900/30 border border-white/10 rounded-lg overflow-hidden relative transition-all duration-300 ${className}`}
     >
       {/* Glare/Glow overlay that follows the mouse cursor */}
       {isHovered && (
@@ -87,22 +87,22 @@ export default function BentoGrid() {
     <section id="portfolio" className="relative py-24 bg-black border-t border-white/5">
       
       {/* Glowing shapes */}
-      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand-green/[0.02] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-10 w-[500px] h-[500px] bg-brand-blue/[0.02] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-10 w-[500px] h-[500px] bg-brand-secondary/[0.01] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-10 w-[500px] h-[500px] bg-brand-primary/[0.01] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
         
         {/* Header Block */}
         <div className="max-w-3xl mb-16 flex flex-col gap-4 relative">
-          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,168,255,0.03),transparent_60%)] pointer-events-none z-0" />
-          <span className="text-xs font-mono tracking-widest text-brand-green uppercase relative z-10">
+          <div className="absolute -inset-x-20 -inset-y-20 bg-[radial-gradient(circle_at_center,rgba(0,132,255,0.03),transparent_60%)] pointer-events-none z-0" />
+          <span className="text-xs font-mono tracking-widest text-brand-secondary uppercase relative z-10">
             [ 03 // BENTO GRID DE SISTEMAS ]
           </span>
-          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
+          <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
             Ecossistemas Desenvolvidos. <br />
             Conceitos e Clientes.
           </h2>
-          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl relative z-10">
+          <p className="font-sans text-xs text-gray-400 leading-relaxed max-w-xl relative z-10">
             Clique ou passe o cursor sobre as células do grid para interagir de forma tátil e explorar os detalhes do sistema.
           </p>
         </div>
@@ -112,59 +112,65 @@ export default function BentoGrid() {
           
           {/* Card 1: Centurion Scout (Concept) - col-span-2 row-span-1 */}
           <Card3D 
-            className="md:col-span-2 md:row-span-1 border-white/5"
+            className="md:col-span-2 md:row-span-1 border-white/10"
             glowColor="rgba(0, 255, 204, 0.08)"
           >
             <div className="p-8 h-full flex flex-col justify-between">
               <div className="flex items-start justify-between">
-                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
-                  <Trophy className="w-5 h-5 text-brand-green" />
+                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/10 flex items-center justify-center">
+                  <Trophy className="w-5 h-5 text-brand-secondary" />
                 </div>
-                <span className="text-[9px] font-mono text-brand-green tracking-widest uppercase font-bold">
+                <span className="text-[9px] font-mono text-brand-secondary tracking-widest uppercase font-bold">
                   // PRODUTO CONCEITO: ANALYTICS
                 </span>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="font-serif font-bold text-2xl text-gray-100">Centurion Scout</h4>
-                <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-sans font-bold text-2xl text-gray-100">Centurion Scout</h4>
+                  <span className="text-[8px] font-mono border border-brand-secondary/30 text-brand-secondary px-1.5 py-0.5 rounded-md">v1.2 // ALPHA</span>
+                </div>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed max-w-2xl">
                   Plataforma integrada de scouting esportivo e análise preditiva de lutas. Avaliação estatística de performance de wrestling e simulação de embates usando redes neurais.
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-white/5">
+              <div className="flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-[8px] font-mono text-gray-500">// TENSORFLOW / PYTHON CORE</span>
-                <span className="text-[9px] font-mono text-brand-green uppercase tracking-wider">[ 01 ]</span>
+                <span className="text-[9px] font-mono text-brand-secondary uppercase tracking-wider">[ 01 ]</span>
               </div>
             </div>
           </Card3D>
 
           {/* Card 2: Decide Aí Vida (Concept) - col-span-1 row-span-1 */}
-          <Card3D className="border-white/5" glowColor="rgba(0, 168, 255, 0.08)">
+          <Card3D className="border-white/10" glowColor="rgba(0, 132, 255, 0.08)">
             <div className="p-8 h-full flex flex-col justify-between">
               <div className="flex items-start justify-between">
-                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/5 flex items-center justify-center">
-                  <Database className="w-5 h-5 text-brand-blue" />
+                <div className="w-10 h-10 rounded bg-white/[0.02] border border-white/10 flex items-center justify-center">
+                  <Database className="w-5 h-5 text-brand-primary" />
                 </div>
-                <span className="text-[9px] font-mono text-brand-blue tracking-widest uppercase font-bold">
+                <span className="text-[9px] font-mono text-brand-primary tracking-widest uppercase font-bold">
                   // DECISION AI
                 </span>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="font-serif font-bold text-xl text-gray-100">Decide Aí Vida</h4>
-                <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-sans font-bold text-xl text-gray-100">Decide Aí Vida</h4>
+                  <span className="text-[8px] font-mono border border-brand-primary/30 text-brand-primary px-1.5 py-0.5 rounded-md">v2.0 // ACTIVE</span>
+                </div>
+                <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                   Rede de decisão autônoma alimentada por LLMs locais seguros. Avalia logs operacionais e riscos de crédito instantaneamente.
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-white/5">
+              <div className="flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-[8px] font-mono text-gray-500">// SECURE LOCAL RAG</span>
-                <span className="text-[9px] font-mono text-brand-blue uppercase tracking-wider">[ 02 ]</span>
+                <span className="text-[9px] font-mono text-brand-primary uppercase tracking-wider">[ 02 ]</span>
               </div>
             </div>
           </Card3D>
 
           {/* Card 3: Centurion Fight Shop (Real) - col-span-1 row-span-2 */}
-          <Card3D className="md:row-span-2 group border-white/5" glowColor="rgba(0, 168, 255, 0.08)">
+          <Card3D className="md:row-span-2 group border-white/10" glowColor="rgba(0, 132, 255, 0.08)">
             <div className="h-full flex flex-col justify-between">
-              <div className="relative h-44 overflow-hidden border-b border-white/5">
+              <div className="relative h-44 overflow-hidden border-b border-white/10">
                 <img 
                   src="/images/centurion.png" 
                   alt="Centurion Fight Shop" 
@@ -174,15 +180,15 @@ export default function BentoGrid() {
               </div>
               <div className="p-8 flex-grow flex flex-col justify-between">
                 <div className="flex flex-col gap-3">
-                  <span className="text-[9px] font-mono text-brand-blue tracking-widest font-bold">// REAL SYSTEM</span>
-                  <h4 className="font-serif font-bold text-xl text-gray-100">Centurion Fight Shop</h4>
-                  <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                  <span className="text-[9px] font-mono text-brand-primary tracking-widest font-bold">// REAL SYSTEM</span>
+                  <h4 className="font-sans font-bold text-xl text-gray-100">Centurion Fight Shop</h4>
+                  <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                     E-commerce completo e sistema interno para cadastro, indexação de lutas e gestão financeira de atletas associados.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
+                <div className="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
                   <span className="text-[8px] font-mono text-gray-500">// NEXT.JS / SHOPIFY API</span>
-                  <a href="#" className="text-[10px] font-mono text-brand-blue hover:text-white transition-colors">
+                  <a href="#" className="text-[10px] font-mono text-brand-primary hover:text-white transition-colors">
                     [ VISITAR ]
                   </a>
                 </div>
@@ -191,24 +197,24 @@ export default function BentoGrid() {
           </Card3D>
 
           {/* Card 4: Empório Glass (Real) - col-span-2 row-span-1 */}
-          <Card3D className="md:col-span-2 group border-white/5" glowColor="rgba(0, 229, 255, 0.08)">
+          <Card3D className="md:col-span-2 group border-white/10" glowColor="rgba(0, 229, 255, 0.08)">
             <div className="h-full flex flex-col md:flex-row justify-between">
               <div className="p-8 flex-grow flex flex-col justify-between">
                 <div className="flex flex-col gap-3">
-                  <span className="text-[9px] font-mono text-brand-cyan tracking-widest font-bold">// FRONTEND PREMIUM</span>
-                  <h4 className="font-serif font-bold text-xl text-gray-100">Empório Glass</h4>
-                  <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed max-w-md">
+                  <span className="text-[9px] font-mono text-brand-secondary tracking-widest font-bold">// FRONTEND PREMIUM</span>
+                  <h4 className="font-sans font-bold text-xl text-gray-100">Empório Glass</h4>
+                  <p className="font-sans text-[10px] text-gray-400 leading-relaxed max-w-md">
                     Site institucional premium com catálogo dinâmico de vidraçaria, esquadrias e isolamento acústico de alto padrão.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
+                <div className="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
                   <span className="text-[8px] font-mono text-gray-500">// TAILWIND / MOTION FRAMEWORKS</span>
-                  <a href="#" className="text-[10px] font-mono text-brand-cyan hover:text-white transition-colors">
+                  <a href="#" className="text-[10px] font-mono text-brand-secondary hover:text-white transition-colors">
                     [ VISITAR ]
                   </a>
                 </div>
               </div>
-              <div className="relative w-full md:w-56 h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/5 flex-shrink-0">
+              <div className="relative w-full md:w-56 h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/10 flex-shrink-0">
                 <img 
                   src="/images/emporioglass.png" 
                   alt="Empório Glass" 
@@ -220,21 +226,21 @@ export default function BentoGrid() {
           </Card3D>
 
           {/* Card 5: Esporte NTG (Real) - col-span-1 row-span-1 */}
-          <Card3D className="group border-white/5" glowColor="rgba(0, 168, 255, 0.08)">
+          <Card3D className="group border-white/10" glowColor="rgba(0, 132, 255, 0.08)">
             <div className="p-8 h-full flex flex-col justify-between">
               <div className="flex items-start justify-between">
                 <span className="text-[9px] font-mono text-gray-500 tracking-widest font-bold">
                   // CLIENT SYSTEM
                 </span>
-                <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-brand-blue transition-colors" />
+                <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-brand-primary transition-colors" />
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="font-serif font-bold text-lg text-gray-100">NTG Wrestling</h4>
-                <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                <h4 className="font-sans font-bold text-lg text-gray-100">NTG Wrestling</h4>
+                <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                   Gerenciamento esportivo e portal institucional de wrestling olímpico.
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-white/5">
+              <div className="flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-[8px] font-mono text-gray-500">// HIGH SPEED CDN</span>
                 <span className="text-[8px] font-mono text-gray-300">// ACTIVE</span>
               </div>
@@ -242,7 +248,7 @@ export default function BentoGrid() {
           </Card3D>
 
           {/* Card 6: Capril Sparta (Real) - col-span-1 row-span-1 */}
-          <Card3D className="group border-white/5" glowColor="rgba(0, 255, 204, 0.08)">
+          <Card3D className="group border-white/10" glowColor="rgba(0, 255, 204, 0.08)">
             <div className="p-8 h-full flex flex-col justify-between">
               <div className="flex items-start justify-between">
                 <span className="text-[9px] font-mono text-gray-500 tracking-widest font-bold">
@@ -251,12 +257,12 @@ export default function BentoGrid() {
                 <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-brand-green transition-colors" />
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="font-serif font-bold text-lg text-gray-100">Capril Sparta</h4>
-                <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                <h4 className="font-sans font-bold text-lg text-gray-100">Capril Sparta</h4>
+                <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                   Sistema de rastreabilidade e catálogo de agroecologia familiar.
                 </p>
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-white/5">
+              <div className="flex justify-between items-center pt-4 border-t border-white/10">
                 <span className="text-[8px] font-mono text-gray-500">// SERVERLESS ARCH</span>
                 <span className="text-[8px] font-mono text-gray-300">// ACTIVE</span>
               </div>
@@ -264,24 +270,24 @@ export default function BentoGrid() {
           </Card3D>
 
           {/* Card 7: VTP System (Real) - col-span-1 md:col-span-2 row-span-1 */}
-          <Card3D className="md:col-span-2 group border-white/5" glowColor="rgba(0, 168, 255, 0.08)">
+          <Card3D className="md:col-span-2 group border-white/10" glowColor="rgba(0, 132, 255, 0.08)">
             <div className="h-full flex flex-col md:flex-row justify-between">
               <div className="p-8 flex-grow flex flex-col justify-between">
                 <div className="flex flex-col gap-3">
-                  <span className="text-[9px] font-mono text-brand-blue tracking-widest font-bold">// SECURE DASHBOARD</span>
-                  <h4 className="font-serif font-bold text-xl text-gray-100">VTPDirect Dashboard</h4>
-                  <p className="font-mono text-[10px] text-gray-400 uppercase leading-relaxed">
+                  <span className="text-[9px] font-mono text-brand-primary tracking-widest font-bold">// SECURE DASHBOARD</span>
+                  <h4 className="font-sans font-bold text-xl text-gray-100">VTPDirect Dashboard</h4>
+                  <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
                     Painel administrativo criptografado para indexação de dados e análise operacional de frotas industriais.
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
+                <div className="pt-6 mt-6 border-t border-white/10 flex justify-between items-center">
                   <span className="text-[8px] font-mono text-gray-500">// MYSQL / ADMIN PANEL</span>
-                  <a href="#" className="text-[10px] font-mono text-brand-blue hover:text-white transition-colors">
+                  <a href="#" className="text-[10px] font-mono text-brand-primary hover:text-white transition-colors">
                     [ VISITAR ]
                   </a>
                 </div>
               </div>
-              <div className="relative w-full md:w-56 h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/5 flex-shrink-0">
+              <div className="relative w-full md:w-56 h-full overflow-hidden border-t md:border-t-0 md:border-l border-white/10 flex-shrink-0">
                 <img 
                   src="/images/vtpsystem.png" 
                   alt="VTP System" 

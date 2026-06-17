@@ -39,11 +39,11 @@ export default function Contact() {
           <span className="text-xs font-mono tracking-widest text-brand-blue uppercase relative z-10">
             [ 05 // CONECTAR INFRAESTRUTURA ]
           </span>
-          <h2 className="font-serif font-black text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
+          <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter relative z-10">
             Inicie Seu Projeto <br />
             de Inteligência Artificial.
           </h2>
-          <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed max-w-xl relative z-10">
+          <p className="font-sans text-sm text-gray-400 leading-relaxed max-w-xl relative z-10">
             Preencha os parâmetros abaixo para abrir um canal direto com nossa equipe de engenharia.
           </p>
         </div>
@@ -80,12 +80,12 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-brand-green" />
                 <span className="text-[10px] font-mono text-brand-green tracking-widest font-bold uppercase">CANAL CORPORATIVO RÁPIDO</span>
               </div>
-              <p className="font-mono text-xs text-gray-400 uppercase leading-relaxed">
+              <p className="font-sans text-xs text-gray-400 leading-relaxed">
                 Prefere atendimento imediato pelo celular para alinhar o escopo? Acesse o canal via WhatsApp.
               </p>
               <button 
                 onClick={handleWhatsAppRedirect}
-                className="w-full text-center text-xs font-mono tracking-widest text-brand-green border border-brand-green/35 py-3.5 rounded hover:bg-brand-green hover:text-bg hover:shadow-[0_0_20px_rgba(0,255,204,0.45)] transition-all duration-300 font-bold cursor-pointer"
+                className="w-full text-center text-xs font-mono tracking-widest text-brand-green border border-brand-green/35 py-3.5 rounded-md hover:bg-brand-green hover:text-bg hover:shadow-[0_0_20px_rgba(0,255,204,0.45)] transition-all duration-300 font-bold cursor-pointer"
               >
                 [ CONECTAR WHATSAPP ]
               </button>
@@ -105,7 +105,7 @@ export default function Contact() {
                   placeholder="EX: MATEUS SILVA"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded-md transition-colors"
                 />
               </div>
 
@@ -117,7 +117,7 @@ export default function Contact() {
                   placeholder="EX: MATEUS@SUAEMPRESA.COM"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded-md transition-colors"
                 />
               </div>
 
@@ -129,13 +129,13 @@ export default function Contact() {
                   placeholder="EX: PRECISO DE UM SISTEMA ESPECIALISTA PARA ANALISAR CONTRATOS..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded resize-none transition-colors"
+                  className="bg-black/40 border border-white/5 focus:border-brand-blue/50 text-xs font-mono text-gray-100 p-4 outline-none rounded-md resize-none transition-colors"
                 />
               </div>
 
               <button 
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black py-4 rounded font-bold hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black py-4 rounded-md font-bold hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300 cursor-pointer"
               >
                 {isSent ? 'TICKET TRANSMITIDO!' : 'TRANSMITIR PARÂMETROS'}
               </button>

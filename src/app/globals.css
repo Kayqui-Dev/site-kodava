@@ -2,14 +2,15 @@
 
 @theme {
   --color-bg: #000000; /* Pure Black Canvas */
-  --color-card-bg: rgba(8, 8, 10, 0.45);
-  --color-brand-blue: #00a8ff;
-  --color-brand-cyan: #00e5ff;
+  --color-card-bg: rgba(9, 9, 11, 0.3); /* Premium Glassmorphism */
+  --color-brand-primary: #0084ff; /* Logo Royal Blue */
+  --color-brand-secondary: #00e5ff; /* Logo Crystalline Cyan */
+  --color-brand-dark: #032e6a; /* Logo Deep Blue */
   --color-brand-green: #00ffcc;
-  --color-border-accent: rgba(255, 255, 255, 0.07); /* Micro border */
-  --color-border-accent-green: rgba(0, 255, 204, 0.07);
+  --color-border-accent: rgba(255, 255, 255, 0.1); /* border-white/10 */
+  --color-border-accent-green: rgba(0, 255, 204, 0.08);
   
-  --font-serif: var(--font-serif), serif;
+  --font-sans: var(--font-sans), sans-serif;
   --font-mono: var(--font-mono), monospace;
 }
 
@@ -21,7 +22,7 @@
 body {
   background-color: var(--color-bg);
   color: #f3f4f6;
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
 }
 
