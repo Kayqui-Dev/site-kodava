@@ -1,8 +1,13 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef, useEffect } from 'react';
 import { Terminal, BrainCircuit, Cable, RefreshCw } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const services = [
   {
@@ -37,25 +42,72 @@ const services = [
 
 export default function SolutionsHorizontal() {
   const targetRef = useRef<HTMLDivElement>(null);
-  
-  // Track scroll of the parent container
-  const { scrollYProgress } = useScroll({
-    target: targetRef
-  });
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  // Map scroll progress to horizontal translation (from 0 to -60% of track width)
-  const x = useTransform(scrollYProgress, [0.08, 0.92], ['0%', '-62%']);
-  
-  // Apply smooth spring physics to make the horizontal scroll silky and weighted
-  const xSpring = useSpring(x, { stiffness: 70, damping: 20, mass: 0.6 });
+  useEffect(() => {
+    // Only run on desktop/tablet (width >= 768px)
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    if (!mediaQuery.matches) return;
 
-  // Transform scroll progress into individual card wipe effects (clip path)
-  const card1Clip = useTransform(scrollYProgress, [0.1, 0.25], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
-  const card2Clip = useTransform(scrollYProgress, [0.25, 0.45], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
-  const card3Clip = useTransform(scrollYProgress, [0.45, 0.65], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
-  const card4Clip = useTransform(scrollYProgress, [0.65, 0.85], ['polygon(0 0, 0 0, 0 100%, 0 100%)', 'polygon(0 0, 100% 0, 100% 100%, 0 100%)']);
+    const target = targetRef.current;
+    const track = trackRef.current;
+    if (!target || !track) return;
 
-  const clips = [card1Clip, card2Clip, card3Clip, card4Clip];
+    // Initialize GSAP ScrollTrigger timeline
+    const initGSAP = () => {
+      const trackWidth = track.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const scrollAmount = trackWidth - viewportWidth + 96; // accounting for padding/margins
+
+      const cards = track.querySelectorAll('.service-card');
+
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: target,
+            start: 'top top',
+            end: () => `+=${trackWidth * 1.1}`,
+            scrub: 1.2,
+            pin: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Move the track horizontally
+        tl.to(track, {
+          x: -scrollAmount,
+          ease: 'none',
+        }, 0);
+
+        // Reveal the cards with clip-path wipe reveal
+        cards.forEach((card, index) => {
+          gsap.set(card, { clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)' });
+          
+          const start = index * 0.25;
+          tl.to(card, {
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+            ease: 'power2.out',
+          }, start);
+        });
+      }, targetRef);
+
+      return ctx;
+    };
+
+    const ctxInstance = initGSAP();
+
+    // Reinitialize on resize to ensure correct scroll calculations
+    const handleResize = () => {
+      ctxInstance?.revert();
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      ctxInstance?.revert();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div id="servicos" className="relative">
@@ -89,17 +141,16 @@ export default function SolutionsHorizontal() {
 
           {/* Sliding Track */}
           <div className="flex items-center w-full px-12 relative z-10">
-            <motion.div 
-              style={{ x: xSpring }} 
+            <div 
+              ref={trackRef} 
               className="flex gap-8 pr-[30vw]"
             >
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <motion.div
+                  <div
                     key={service.title}
-                    style={{ clipPath: clips[index] }}
-                    className="w-[420px] h-[380px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-10 rounded-lg flex flex-col justify-between group hover:border-brand-primary/20 transition-colors duration-300 relative overflow-hidden"
+                    className="service-card w-[420px] h-[380px] flex-shrink-0 bg-white/[0.01] border border-white/5 p-10 rounded-lg flex flex-col justify-between group hover:border-brand-primary/20 transition-colors duration-300 relative overflow-hidden"
                   >
                     {/* Glowing highlight in background */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/[0.02] rounded-full blur-2xl group-hover:bg-brand-secondary/[0.04] transition-colors" />
@@ -132,10 +183,10 @@ export default function SolutionsHorizontal() {
                         // SECURE DATA PIPELINE
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
           
         </div>

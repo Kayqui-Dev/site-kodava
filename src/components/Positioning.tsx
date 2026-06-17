@@ -1,7 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Database, Network, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const blocks = [
   {
@@ -43,6 +50,38 @@ const cardVariants = {
 } as const;
 
 export default function Positioning() {
+  useEffect(() => {
+    const stats = [
+      { id: '#stat-reqs', endVal: 50 },
+      { id: '#stat-latency', endVal: 85 },
+      { id: '#stat-sla', endVal: 99 }
+    ];
+
+    const ctx = gsap.context(() => {
+      stats.forEach((stat) => {
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: stat.endVal,
+          duration: 1.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: stat.id,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+          onUpdate: () => {
+            const el = document.querySelector(stat.id);
+            if (el) {
+              el.textContent = Math.floor(obj.val).toString();
+            }
+          }
+        });
+      });
+    }, '#diferenciais');
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section id="diferenciais" className="relative py-24 bg-black overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
@@ -101,6 +140,36 @@ export default function Positioning() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Statistics section with GSAP animated counter */}
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-white/5 relative z-10">
+          <div className="flex flex-col gap-2 p-6 bg-white/[0.01] border border-white/5 rounded-lg">
+            <span className="text-[10px] font-mono text-brand-primary tracking-widest uppercase">// REQUISIÇÕES / DIA</span>
+            <div className="flex items-baseline gap-1">
+              <span className="text-4xl md:text-5xl font-sans font-extrabold text-white tracking-tight" id="stat-reqs">0</span>
+              <span className="text-xl font-sans font-bold text-brand-primary">M+</span>
+            </div>
+            <span className="text-[9px] font-mono text-gray-500 uppercase">// PIPELINES DE IA PROCESSADOS</span>
+          </div>
+
+          <div className="flex flex-col gap-2 p-6 bg-white/[0.01] border border-white/5 rounded-lg">
+            <span className="text-[10px] font-mono text-brand-secondary tracking-widest uppercase">// REDUÇÃO DE LATÊNCIA</span>
+            <div className="flex items-baseline gap-1">
+              <span className="text-4xl md:text-5xl font-sans font-extrabold text-white tracking-tight" id="stat-latency">0</span>
+              <span className="text-xl font-sans font-bold text-brand-secondary">%</span>
+            </div>
+            <span className="text-[9px] font-mono text-gray-500 uppercase">// COMPACTAÇÃO DE MODELOS</span>
+          </div>
+
+          <div className="flex flex-col gap-2 p-6 bg-white/[0.01] border border-white/5 rounded-lg">
+            <span className="text-[10px] font-mono text-brand-green tracking-widest uppercase">// SLA DE DISPONIBILIDADE</span>
+            <div className="flex items-baseline gap-1">
+              <span className="text-4xl md:text-5xl font-sans font-extrabold text-white tracking-tight" id="stat-sla">0</span>
+              <span className="text-xl font-sans font-bold text-brand-green">%</span>
+            </div>
+            <span className="text-[9px] font-mono text-gray-500 uppercase">// SISTEMAS 100% PROPRIETÁRIOS</span>
+          </div>
+        </div>
 
         {/* Asymmetrical Quote */}
         <div className="mt-20 p-8 border-l border-white/10 bg-white/[0.01] max-w-4xl rounded-r-lg">

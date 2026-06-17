@@ -298,6 +298,43 @@ export default function BentoGrid() {
             </div>
           </Card3D>
 
+          {/* Card 8: System Status (Real-time Live Widget) - col-span-1 row-span-1 */}
+          <Card3D className="group border-white/10" glowColor="rgba(0, 255, 204, 0.08)">
+            <div className="p-8 h-full flex flex-col justify-between">
+              <div className="flex items-start justify-between">
+                <span className="text-[9px] font-mono text-gray-500 tracking-widest font-bold">
+                  // LIVE MONITOR
+                </span>
+                <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-[8px] font-mono text-emerald-400 font-bold">ONLINE</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h4 className="font-sans font-bold text-lg text-gray-100">Infraestrutura Kodava</h4>
+                <p className="font-sans text-[10px] text-gray-400 leading-relaxed">
+                  Monitoramento em tempo real de clusters de GPU dedicados e latência de RAG.
+                </p>
+                <div className="flex flex-col gap-1.5 mt-2">
+                  <div className="flex justify-between text-[8px] font-mono text-gray-500">
+                    <span>H100 CLUSTER LOAD</span>
+                    <span>34%</span>
+                  </div>
+                  <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                    <div className="bg-brand-green h-full w-[34%] animate-pulse" />
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-between items-center pt-4 border-t border-white/10">
+                <span className="text-[8px] font-mono text-gray-500">// LATÊNCIA: 120MS</span>
+                <span className="text-[8px] font-mono text-brand-green font-bold">// 99.99% UPTIME</span>
+              </div>
+            </div>
+          </Card3D>
+
         </div>
 
       </div>
