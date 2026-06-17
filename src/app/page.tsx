@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Bot, Cpu, Database, Mail, MapPin, Phone, Shield, Terminal, MessageSquare, Code, CheckCircle2 } from 'lucide-react';
+import TransparentLogo from '@/components/TransparentLogo';
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
 function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)' }: { children: React.ReactNode; className?: string; glowColor?: string }) {
@@ -92,33 +93,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3 group">
             <motion.div 
-              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
-              className="w-10 h-10 flex items-center justify-center relative"
+              whileHover={{ scale: 1.05 }}
+              className="w-10 h-10 flex items-center justify-center relative overflow-hidden"
             >
-              {/* Official Crystalline Fluid Logo K */}
-              <svg className="w-[38px] h-[38px] drop-shadow-[0_0_8px_rgba(0,132,255,0.35)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="k-logo-grad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#00e5ff" />
-                    <stop offset="50%" stopColor="#0084ff" />
-                    <stop offset="100%" stopColor="#032e6a" />
-                  </linearGradient>
-                </defs>
-                <path 
-                  d="M24 15 C 24 15, 34 22, 34 50 C 34 78, 24 85, 24 85 L 34 85 C 34 85, 44 78, 44 50 C 44 22, 34 15, 34 15 Z" 
-                  fill="url(#k-logo-grad)" 
-                />
-                <path 
-                  d="M42 50 L 76 15 L 86 15 L 53 50 L 86 85 L 76 85 Z" 
-                  fill="url(#k-logo-grad)" 
-                  opacity="0.9" 
-                />
-                <circle cx="28" cy="12" r="3" fill="#00e5ff" />
-                <circle cx="16" cy="19" r="2" fill="#0084ff" />
-                <circle cx="18" cy="74" r="2.5" fill="#00e5ff" />
-                <circle cx="82" cy="12" r="2.5" fill="#00e5ff" />
-                <circle cx="88" cy="78" r="3" fill="#0084ff" />
-              </svg>
+              <TransparentLogo src="/images/logo.png" alt="Kodava Logo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(0,132,255,0.35)]" />
             </motion.div>
             <span className="font-sans font-extrabold text-xl tracking-wider bg-gradient-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-brand-primary transition-all duration-300">
               KODAVA
@@ -192,31 +170,9 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="relative w-72 h-72 flex items-center justify-center border border-white/5 bg-zinc-900/10 backdrop-blur-md rounded-2xl shadow-[0_0_50px_rgba(0,132,255,0.1)]"
+              className="relative w-72 h-72 flex items-center justify-center border border-white/5 bg-zinc-900/10 backdrop-blur-md rounded-2xl shadow-[0_0_50px_rgba(0,132,255,0.1)] overflow-hidden"
             >
-              <svg className="w-[180px] h-[180px] drop-shadow-[0_0_25px_rgba(0,132,255,0.4)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="k-hero-grad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#00e5ff" />
-                    <stop offset="50%" stopColor="#0084ff" />
-                    <stop offset="100%" stopColor="#032e6a" />
-                  </linearGradient>
-                </defs>
-                <path 
-                  d="M24 15 C 24 15, 34 22, 34 50 C 34 78, 24 85, 24 85 L 34 85 C 34 85, 44 78, 44 50 C 44 22, 34 15, 34 15 Z" 
-                  fill="url(#k-hero-grad)" 
-                />
-                <path 
-                  d="M42 50 L 76 15 L 86 15 L 53 50 L 86 85 L 76 85 Z" 
-                  fill="url(#k-hero-grad)" 
-                  opacity="0.9" 
-                />
-                <circle cx="28" cy="12" r="3" fill="#00e5ff" />
-                <circle cx="16" cy="19" r="2" fill="#0084ff" />
-                <circle cx="18" cy="74" r="2.5" fill="#00e5ff" />
-                <circle cx="82" cy="12" r="2.5" fill="#00e5ff" />
-                <circle cx="88" cy="78" r="3" fill="#0084ff" />
-              </svg>
+              <TransparentLogo src="/images/logo.png" alt="Kodava Solutions" className="w-[190px] h-[190px] object-contain drop-shadow-[0_0_25px_rgba(0,132,255,0.4)]" />
             </motion.div>
           </div>
 
