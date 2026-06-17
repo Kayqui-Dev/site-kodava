@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #030712;
+  --color-card-bg: rgba(10, 15, 30, 0.45);
+  --color-brand-blue: #00a8ff;
+  --color-brand-cyan: #00e5ff;
+  --color-brand-green: #00ffcc;
+  --color-border-accent: rgba(0, 168, 255, 0.15);
+  --color-border-accent-green: rgba(0, 255, 204, 0.15);
+  
+  --font-serif: var(--font-serif), serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+/* Base custom styles */
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #f3f4f6;
+  font-family: var(--font-mono), monospace;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(3, 7, 18, 0.75);
+}
+
+.glass-card {
+  backdrop-filter: blur(12px);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-accent);
+}
+
+.glass-card-green {
+  backdrop-filter: blur(12px);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-accent-green);
+}
+
+/* Glowing text shadows */
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 168, 255, 0.4);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+}
+
+/* Hide scrollbar default utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 168, 255, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-blue);
+}
+
+/* Cyberpunk Noise Overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
