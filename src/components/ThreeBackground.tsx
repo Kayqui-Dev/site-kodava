@@ -132,7 +132,8 @@ export default function ThreeBackground() {
       const b = document.body;
       const st = 'scrollTop';
       const sh = 'scrollHeight';
-      scrollPercent = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
+      const scrollHeight = (h[sh] || b[sh]) - h.clientHeight;
+      scrollPercent = scrollHeight > 0 ? (h[st] || b[st]) / scrollHeight : 0;
     };
 
     const handleMouseMove = (e: MouseEvent) => {

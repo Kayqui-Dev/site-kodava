@@ -12,6 +12,17 @@
   --font-sans: var(--font-sans), sans-serif;
   --font-mono: var(--font-mono), monospace;
   --font-serif: var(--font-serif), serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
 }
 
 /* Base custom styles */

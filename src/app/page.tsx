@@ -162,18 +162,28 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero visual representation of Kodava logo */}
+          {/* Hero visual representation of Kodava */}
           <div className="lg:col-span-5 flex justify-center items-center relative h-[380px] lg:h-[500px]">
             {/* Glowing background behind logo */}
-            <div className="absolute w-72 h-72 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute w-80 h-80 bg-brand-primary/15 rounded-full blur-[100px] pointer-events-none" />
             
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-              className="relative w-72 h-72 flex items-center justify-center border border-white/5 bg-zinc-900/10 backdrop-blur-md rounded-2xl shadow-[0_0_50px_rgba(0,132,255,0.1)]"
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              className="relative w-full h-full flex items-center justify-center animate-float"
             >
-              <LogoSVG className="w-[190px] h-[190px] drop-shadow-[0_0_25px_rgba(0,132,255,0.4)]" />
+              {/* Premium generated 3D tech asset */}
+              <img 
+                src="/images/hero-sphere.png" 
+                alt="Kodava Crystalline Network" 
+                className="w-[320px] h-[320px] md:w-[400px] md:h-[400px] object-contain drop-shadow-[0_0_35px_rgba(0,132,255,0.25)]"
+              />
+
+              {/* Subtly overlayed Logo in the center of the sphere for brand connection */}
+              <div className="absolute w-24 h-24 flex items-center justify-center bg-black/40 border border-white/10 backdrop-blur-lg rounded-2xl shadow-[0_0_30px_rgba(0,132,255,0.2)]">
+                <LogoSVG className="w-16 h-16 drop-shadow-[0_0_10px_rgba(0,132,255,0.35)]" />
+              </div>
             </motion.div>
           </div>
 
@@ -183,13 +193,153 @@ export default function Home() {
       {/* Solutions Section (GSAP Scroll Slider) */}
       <SolutionsHorizontal />
 
+      {/* Jobs-to-be-Done / Bento Grid Section */}
+      <section id="manifesto" className="relative py-32 border-t border-white/5 z-10">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          
+          <div className="max-w-3xl mb-20 flex flex-col gap-4">
+            <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
+              [ 03 // POR QUE A KODAVA ]
+            </span>
+            <h2 className="font-serif font-black text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tight">
+              O trabalho que resolvemos <br />
+              para o seu negócio.
+            </h2>
+            <p className="font-sans text-sm text-gray-400 max-w-xl">
+              Nossos clientes não contratam apenas desenvolvimento. Eles nos contratam para resolver desafios estéticos, operacionais e de segurança.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            {/* Bento Card 1: Websites */}
+            <div className="backdrop-blur-md bg-zinc-900/10 border border-white/5 p-10 rounded-2xl flex flex-col justify-between hover:border-brand-primary/20 transition-all duration-300 relative group overflow-hidden min-h-[340px]">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-primary/[0.01] rounded-full blur-3xl group-hover:bg-brand-primary/[0.03] transition-colors" />
+              <div className="flex items-start justify-between">
+                {/* SVG website asset */}
+                <div className="w-16 h-16 rounded-xl bg-white/[0.01] border border-white/5 flex items-center justify-center group-hover:border-brand-secondary/20 transition-colors">
+                  <svg className="w-10 h-10 text-brand-secondary" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="20" width="80" height="60" rx="6" stroke="currentColor" strokeWidth="2" />
+                    <line x1="10" y1="35" x2="90" y2="35" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+                    <circle cx="20" cy="27" r="3" fill="currentColor" />
+                    <circle cx="30" cy="27" r="3" fill="currentColor" />
+                    <circle cx="40" cy="27" r="3" fill="currentColor" />
+                    <rect x="20" y="45" width="25" height="25" rx="3" stroke="currentColor" strokeWidth="2" className="animate-pulse" />
+                    <line x1="55" y1="50" x2="80" y2="50" stroke="currentColor" strokeWidth="2" />
+                    <line x1="55" y1="60" x2="75" y2="60" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </div>
+                <span className="font-serif font-black italic text-5xl md:text-6xl text-zinc-800/40 group-hover:text-brand-secondary/15 transition-colors">
+                  01
+                </span>
+              </div>
+              <div className="flex flex-col gap-3 mt-8 relative z-10">
+                <span className="text-[9px] font-mono text-brand-secondary tracking-widest uppercase">// JOB: AUTORIDADE ESTÉTICA &amp; CONVERSÃO</span>
+                <h3 className="font-serif font-black text-2xl text-gray-100 group-hover:text-brand-secondary transition-colors duration-300">
+                  Websites que Elevam seu Ticket.
+                </h3>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">
+                  Empresas líderes precisam que sua interface transmita excelência. Desenvolvemos sites institucionais cinematográficos e velozes para posicionar seu negócio com autoridade imediata.
+                </p>
+              </div>
+            </div>
+
+            {/* Bento Card 2: Automações */}
+            <div className="backdrop-blur-md bg-zinc-900/10 border border-white/5 p-10 rounded-2xl flex flex-col justify-between hover:border-brand-primary/20 transition-all duration-300 relative group overflow-hidden min-h-[340px]">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-primary/[0.01] rounded-full blur-3xl group-hover:bg-brand-primary/[0.03] transition-colors" />
+              <div className="flex items-start justify-between">
+                {/* SVG automation asset */}
+                <div className="w-16 h-16 rounded-xl bg-white/[0.01] border border-white/5 flex items-center justify-center group-hover:border-brand-primary/20 transition-colors">
+                  <svg className="w-10 h-10 text-brand-primary" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="8" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="70" cy="30" r="8" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="50" cy="70" r="8" stroke="currentColor" strokeWidth="2" />
+                    <path d="M38 30 H62 M62 38 L54 62 M38 38 L46 62" stroke="currentColor" strokeWidth="2" strokeDasharray="4 2" />
+                    <path d="M50 70 L50 85" stroke="currentColor" strokeWidth="2" className="animate-pulse" />
+                  </svg>
+                </div>
+                <span className="font-serif font-black italic text-5xl md:text-6xl text-zinc-800/40 group-hover:text-brand-primary/15 transition-colors">
+                  02
+                </span>
+              </div>
+              <div className="flex flex-col gap-3 mt-8 relative z-10">
+                <span className="text-[9px] font-mono text-brand-primary tracking-widest uppercase">// JOB: ESCALA SEM AUMENTO DE CUSTO</span>
+                <h3 className="font-serif font-black text-2xl text-gray-100 group-hover:text-brand-primary transition-colors duration-300">
+                  Automações Livres de Falhas.
+                </h3>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">
+                  Elimine tarefas manuais que drenam a produtividade. Conectamos ERPs, CRMs e APIs em fluxos de trabalho autônomos que operam 24/7 sem erros humanos.
+                </p>
+              </div>
+            </div>
+
+            {/* Bento Card 3: SaaS / Softwares */}
+            <div className="backdrop-blur-md bg-zinc-900/10 border border-white/5 p-10 rounded-2xl flex flex-col justify-between hover:border-brand-primary/20 transition-all duration-300 relative group overflow-hidden min-h-[340px]">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-primary/[0.01] rounded-full blur-3xl group-hover:bg-brand-primary/[0.03] transition-colors" />
+              <div className="flex items-start justify-between">
+                {/* SVG software asset */}
+                <div className="w-16 h-16 rounded-xl bg-white/[0.01] border border-white/5 flex items-center justify-center group-hover:border-brand-green/20 transition-colors">
+                  <svg className="w-10 h-10 text-brand-green" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 30 L50 15 L80 30 L50 45 Z" stroke="currentColor" strokeWidth="2" />
+                    <path d="M20 50 L50 65 L80 50" stroke="currentColor" strokeWidth="2" />
+                    <path d="M20 70 L50 85 L80 70" stroke="currentColor" strokeWidth="2" />
+                    <line x1="50" y1="45" x2="50" y2="85" stroke="currentColor" strokeWidth="2" strokeDasharray="2 2" />
+                  </svg>
+                </div>
+                <span className="font-serif font-black italic text-5xl md:text-6xl text-zinc-800/40 group-hover:text-brand-green/15 transition-colors">
+                  03
+                </span>
+              </div>
+              <div className="flex flex-col gap-3 mt-8 relative z-10">
+                <span className="text-[9px] font-mono text-brand-green tracking-widest uppercase">// JOB: SISTEMA OPERACIONAL PROPRIETÁRIO</span>
+                <h3 className="font-serif font-black text-2xl text-gray-100 group-hover:text-brand-green transition-colors duration-300">
+                  Sistemas Ajustados à sua Operação.
+                </h3>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">
+                  Softwares genéricos engessam seus processos. Desenvolvemos sistemas corporativos complexos, SaaS escaláveis e aplicativos mobile moldados sob medida.
+                </p>
+              </div>
+            </div>
+
+            {/* Bento Card 4: IA Privada */}
+            <div className="backdrop-blur-md bg-zinc-900/10 border border-white/5 p-10 rounded-2xl flex flex-col justify-between hover:border-brand-primary/20 transition-all duration-300 relative group overflow-hidden min-h-[340px]">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-primary/[0.01] rounded-full blur-3xl group-hover:bg-brand-primary/[0.03] transition-colors" />
+              <div className="flex items-start justify-between">
+                {/* SVG AI asset */}
+                <div className="w-16 h-16 rounded-xl bg-white/[0.01] border border-white/5 flex items-center justify-center group-hover:border-brand-primary/20 transition-colors">
+                  <svg className="w-10 h-10 text-brand-primary" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="35" stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 5" className="animate-[spin_20s_linear_infinite]" />
+                    <polygon points="50,25 70,35 70,65 50,75 30,65 30,35" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="50" cy="50" r="10" fill="currentColor" className="animate-pulse" />
+                  </svg>
+                </div>
+                <span className="font-serif font-black italic text-5xl md:text-6xl text-zinc-800/40 group-hover:text-brand-primary/15 transition-colors">
+                  04
+                </span>
+              </div>
+              <div className="flex flex-col gap-3 mt-8 relative z-10">
+                <span className="text-[9px] font-mono text-brand-primary tracking-widest uppercase">// JOB: INOVAÇÃO COM SEGURANÇA TOTAL</span>
+                <h3 className="font-serif font-black text-2xl text-gray-100 group-hover:text-brand-primary transition-colors duration-300">
+                  Inteligência Artificial Privada.
+                </h3>
+                <p className="font-sans text-xs text-gray-400 leading-relaxed">
+                  Treine e hospede modelos de IA de forma segura na nuvem privada da própria empresa, assegurando sigilo total de dados e regras de negócio.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
       {/* Contact Form Section */}
       <section id="contato" className="relative py-32 border-t border-white/5 z-10">
         <div className="max-w-7xl mx-auto px-6 w-full">
           
           <div className="max-w-3xl mb-16 flex flex-col gap-4">
             <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
-              [ 03 // CANAL DE PARCERIA ]
+              [ 04 // CANAL DE PARCERIA ]
             </span>
             <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
               Inicie seu Website <br />
