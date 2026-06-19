@@ -130,8 +130,8 @@ export default function SolutionsHorizontal() {
       {/* 
         Desktop / Pinned Viewport Container
       */}
-      <div ref={targetRef} className="hidden md:block relative h-[250vh] bg-transparent">
-        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div ref={targetRef} className="hidden md:block relative h-screen w-full overflow-hidden bg-transparent">
+        <div className="w-full h-full flex flex-col justify-center">
           
           {/* Header Area */}
           <div className="max-w-7xl mx-auto px-16 w-full mb-12 flex justify-between items-end relative z-10">
@@ -200,7 +200,6 @@ export default function SolutionsHorizontal() {
               })}
             </div>
           </div>
-          
         </div>
       </div>
 

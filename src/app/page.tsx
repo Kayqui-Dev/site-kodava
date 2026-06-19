@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Mail, MapPin, Phone, Code, Laptop } from 'lucide-react';
 import LogoSVG from '@/components/LogoSVG';
 import SolutionsHorizontal from '@/components/SolutionsHorizontal';
+import HeroTechAsset from '@/components/HeroTechAsset';
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
 function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)' }: { children: React.ReactNode; className?: string; glowColor?: string }) {
@@ -82,7 +83,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 relative selection:bg-brand-primary selection:text-black">
+    <div className="min-h-screen bg-transparent text-gray-100 relative selection:bg-brand-primary selection:text-black">
       
       {/* Background glowing effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(0,132,255,0.06),transparent_70%)] pointer-events-none z-0" />
@@ -164,26 +165,16 @@ export default function Home() {
 
           {/* Hero visual representation of Kodava */}
           <div className="lg:col-span-5 flex justify-center items-center relative h-[380px] lg:h-[500px]">
-            {/* Glowing background behind logo */}
-            <div className="absolute w-80 h-80 bg-brand-primary/15 rounded-full blur-[100px] pointer-events-none" />
+            {/* Glowing background behind asset */}
+            <div className="absolute w-80 h-80 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
             
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="relative w-full h-full flex items-center justify-center animate-float"
+              className="relative w-full h-full flex items-center justify-center"
             >
-              {/* Premium generated 3D tech asset */}
-              <img 
-                src="/images/hero-sphere.png" 
-                alt="Kodava Crystalline Network" 
-                className="w-[320px] h-[320px] md:w-[400px] md:h-[400px] object-contain drop-shadow-[0_0_35px_rgba(0,132,255,0.25)]"
-              />
-
-              {/* Subtly overlayed Logo in the center of the sphere for brand connection */}
-              <div className="absolute w-24 h-24 flex items-center justify-center bg-black/40 border border-white/10 backdrop-blur-lg rounded-2xl shadow-[0_0_30px_rgba(0,132,255,0.2)]">
-                <LogoSVG className="w-16 h-16 drop-shadow-[0_0_10px_rgba(0,132,255,0.35)]" />
-              </div>
+              <HeroTechAsset />
             </motion.div>
           </div>
 

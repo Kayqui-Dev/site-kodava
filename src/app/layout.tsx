@@ -45,7 +45,9 @@ export default function RootLayout({
       <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-primary selection:text-bg">
         <SmoothScroll>
           <ThreeBackground />
-          {children}
+          <div className="relative z-10 w-full flex-grow">
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>

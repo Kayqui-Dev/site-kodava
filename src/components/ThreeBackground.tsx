@@ -197,7 +197,7 @@ export default function ThreeBackground() {
   return (
     <canvas
       ref={mountRef}
-      className="fixed inset-0 w-screen h-screen -z-10 pointer-events-none bg-black block"
+      className="fixed inset-0 w-screen h-screen -z-10 pointer-events-none block"
       style={{ mixBlendMode: 'screen' }}
     />
   );
