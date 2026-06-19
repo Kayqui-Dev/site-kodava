@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import './globals.css';
+import ThreeBackground from '@/components/ThreeBackground';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const geistSans = Geist({
   variable: '--font-sans',
@@ -12,15 +14,22 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const fraunces = Fraunces({
+  variable: '--font-serif',
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
+});
+
 export const metadata: Metadata = {
-  title: 'Kodava Solutions | Sistemas de Inteligência Artificial Sob Medida',
+  title: 'Kodava Solutions | Websites Premium & Softwares de Elite',
   description:
-    'Desenvolvimento de inteligência artificial proprietária e sob medida. Criamos agentes autônomos, prompt engineering avançado e automação inteligente de processos para o seu negócio.',
-  keywords: 'Kodava Solutions, Inteligência Artificial Customizada, Agentes de IA, Automação, Next.js',
+    'Desenvolvemos websites de altíssimo padrão visual e performance, além de aplicativos, SaaS, automações inteligentes e inteligência artificial sob medida para o seu negócio.',
+  keywords: 'Kodava Solutions, Websites Premium, Desenvolvimento de Software, Aplicativos, SaaS, Automação, Inteligência Artificial',
   authors: [{ name: 'Kodava Solutions' }],
   openGraph: {
-    title: 'Kodava Solutions | Sistemas de Inteligência Artificial Sob Medida',
-    description: 'Desenvolvimento de inteligência artificial proprietária, agentes autônomos e automação.',
+    title: 'Kodava Solutions | Websites Premium & Softwares de Elite',
+    description: 'Desenvolvemos websites de altíssimo padrão, aplicativos, SaaS, automações e IA customizada.',
     type: 'website',
     url: 'https://kodavasolutions.com',
   },
@@ -32,9 +41,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}>
+    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="bg-bg text-gray-100 min-h-screen flex flex-col antialiased selection:bg-brand-primary selection:text-bg">
-        {children}
+        <SmoothScroll>
+          <ThreeBackground />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

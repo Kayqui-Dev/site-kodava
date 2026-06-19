@@ -11,6 +11,7 @@
   
   --font-sans: var(--font-sans), sans-serif;
   --font-mono: var(--font-mono), monospace;
+  --font-serif: var(--font-serif), serif;
 }
 
 /* Base custom styles */

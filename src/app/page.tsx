@@ -2,8 +2,9 @@
 
 import { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Bot, Cpu, Database, Mail, MapPin, Phone, Shield, Terminal, MessageSquare, Code, CheckCircle2 } from 'lucide-react';
-import TransparentLogo from '@/components/TransparentLogo';
+import { ArrowRight, Mail, MapPin, Phone, Code, Laptop } from 'lucide-react';
+import LogoSVG from '@/components/LogoSVG';
+import SolutionsHorizontal from '@/components/SolutionsHorizontal';
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
 function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)' }: { children: React.ReactNode; className?: string; glowColor?: string }) {
@@ -75,7 +76,7 @@ export default function Home() {
   const handleWhatsAppRedirect = () => {
     const phoneNumber = '5511999999999';
     const message = encodeURIComponent(
-      'Olá! Gostaria de falar com um especialista sobre inteligência artificial proprietária da Kodava.'
+      'Olá! Gostaria de falar com um especialista sobre desenvolvimento de websites e softwares da Kodava.'
     );
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -94,9 +95,9 @@ export default function Home() {
           <a href="#" className="flex items-center gap-3 group">
             <motion.div 
               whileHover={{ scale: 1.05 }}
-              className="w-10 h-10 flex items-center justify-center relative overflow-hidden"
+              className="w-10 h-10 flex items-center justify-center relative"
             >
-              <TransparentLogo src="/images/logo.png" alt="Kodava Logo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(0,132,255,0.35)]" />
+              <LogoSVG className="w-9 h-9 drop-shadow-[0_0_8px_rgba(0,132,255,0.35)]" />
             </motion.div>
             <span className="font-sans font-extrabold text-xl tracking-wider bg-gradient-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-brand-primary transition-all duration-300">
               KODAVA
@@ -129,19 +130,19 @@ export default function Home() {
           {/* Hero text content */}
           <div className="lg:col-span-7 flex flex-col gap-6 relative">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 max-w-fit">
-              <Cpu className="w-3.5 h-3.5 text-brand-secondary" />
+              <Code className="w-3.5 h-3.5 text-brand-secondary" />
               <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
-                // ARQUITETURA DE IA PROPRIETÁRIA
+                // WEBSITES PREMIUM & DESENVOLVIMENTO DE SOFTWARE DE ELITE
               </span>
             </div>
 
             <h1 className="font-sans font-extrabold text-5xl md:text-7xl leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-brand-primary">
-              Sistemas de IA <br />
-              Customizados para Negócios.
+              Websites Premium <br />
+              & Softwares de Elite.
             </h1>
 
             <p className="font-sans text-sm md:text-base text-gray-400 max-w-xl leading-relaxed">
-              Diferente de wrappers genéricos, a <span className="text-brand-primary font-semibold">Kodava Solutions</span> desenvolve ecossistemas de IA sob medida e privados. Treinados na sua base histórica, integrados de forma 100% segura à sua infraestrutura cloud sem expor dados.
+              Criamos websites institucionais de altíssimo padrão visual e performance, além de aplicativos, SaaS, automações inteligentes e sistemas de inteligência artificial customizados para o seu negócio.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
@@ -149,14 +150,14 @@ export default function Home() {
                 href="#contato"
                 className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black px-8 py-4 rounded-md hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 group"
               >
-                FALAR COM ENGENHARIA
+                INICIAR PROJETO
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="#solucoes"
                 className="inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest border border-white/10 text-gray-400 hover:text-white hover:border-white/20 px-8 py-4 rounded-md transition-all duration-300"
               >
-                VER SOLUÇÕES
+                VER SERVIÇOS
               </a>
             </div>
           </div>
@@ -170,103 +171,17 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="relative w-72 h-72 flex items-center justify-center border border-white/5 bg-zinc-900/10 backdrop-blur-md rounded-2xl shadow-[0_0_50px_rgba(0,132,255,0.1)] overflow-hidden"
+              className="relative w-72 h-72 flex items-center justify-center border border-white/5 bg-zinc-900/10 backdrop-blur-md rounded-2xl shadow-[0_0_50px_rgba(0,132,255,0.1)]"
             >
-              <TransparentLogo src="/images/logo.png" alt="Kodava Solutions" className="w-[190px] h-[190px] object-contain drop-shadow-[0_0_25px_rgba(0,132,255,0.4)]" />
+              <LogoSVG className="w-[190px] h-[190px] drop-shadow-[0_0_25px_rgba(0,132,255,0.4)]" />
             </motion.div>
           </div>
 
         </div>
       </section>
 
-      {/* Solutions Grid Section */}
-      <section id="solucoes" className="relative py-32 border-t border-white/5 z-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          
-          <div className="max-w-3xl mb-20 flex flex-col gap-4">
-            <span className="text-xs font-mono tracking-widest text-brand-secondary uppercase">
-              [ 01 // NOSSO ECOSSISTEMA ]
-            </span>
-            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
-              Soluções Especializadas para Escala.
-            </h2>
-            <p className="font-sans text-sm text-gray-400 max-w-xl">
-              Desenvolvemos e integramos componentes fundamentais de IA ajustados às regras operacionais do seu negócio.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            {/* Card 1: RAG & Knowledge bases */}
-            <Card3D glowColor="rgba(0, 229, 255, 0.08)">
-              <div className="p-8 h-full flex flex-col justify-between min-h-[300px]">
-                <div className="flex items-start justify-between">
-                  <div className="w-10 h-10 rounded-md bg-white/[0.02] border border-white/10 flex items-center justify-center">
-                    <Database className="w-5 h-5 text-brand-secondary" />
-                  </div>
-                  <span className="text-[9px] font-mono text-brand-secondary tracking-widest uppercase font-bold">// DATA TRAINING</span>
-                </div>
-                <div className="flex flex-col gap-2 mt-6">
-                  <h3 className="font-sans font-bold text-xl text-gray-100">Modelos Proprietários</h3>
-                  <p className="font-sans text-xs text-gray-400 leading-relaxed">
-                    Treinamos redes neurais diretamente em seu histórico de logs e conhecimento corporativo privado, mitigando alucinações.
-                  </p>
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-white/10 mt-6">
-                  <span className="text-[8px] font-mono text-gray-500">// LLM / PYTORCH</span>
-                  <span className="text-[9px] font-mono text-brand-secondary uppercase tracking-wider">[ 01 ]</span>
-                </div>
-              </div>
-            </Card3D>
-
-            {/* Card 2: Autonomous Agents */}
-            <Card3D glowColor="rgba(0, 132, 255, 0.08)">
-              <div className="p-8 h-full flex flex-col justify-between min-h-[300px]">
-                <div className="flex items-start justify-between">
-                  <div className="w-10 h-10 rounded-md bg-white/[0.02] border border-white/10 flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-brand-primary" />
-                  </div>
-                  <span className="text-[9px] font-mono text-brand-primary tracking-widest uppercase font-bold">// AUTONOMY</span>
-                </div>
-                <div className="flex flex-col gap-2 mt-6">
-                  <h3 className="font-sans font-bold text-xl text-gray-100">Agentes Cognitivos</h3>
-                  <p className="font-sans text-xs text-gray-400 leading-relaxed">
-                    Desenvolvimento de agentes de tomada de decisão aptos a interagir com bancos de dados, APIs de mercado e rotinas administrativas.
-                  </p>
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-white/10 mt-6">
-                  <span className="text-[8px] font-mono text-gray-500">// ORCHESTRATION / AGENTS</span>
-                  <span className="text-[9px] font-mono text-brand-primary uppercase tracking-wider">[ 02 ]</span>
-                </div>
-              </div>
-            </Card3D>
-
-            {/* Card 3: Secure Cloud Infrastructure */}
-            <Card3D glowColor="rgba(0, 255, 204, 0.08)">
-              <div className="p-8 h-full flex flex-col justify-between min-h-[300px]">
-                <div className="flex items-start justify-between">
-                  <div className="w-10 h-10 rounded-md bg-white/[0.02] border border-white/10 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-brand-green" />
-                  </div>
-                  <span className="text-[9px] font-mono text-brand-green tracking-widest uppercase font-bold">// PRIVATE ARCH</span>
-                </div>
-                <div className="flex flex-col gap-2 mt-6">
-                  <h3 className="font-sans font-bold text-xl text-gray-100">Infraestrutura Dedicada</h3>
-                  <p className="font-sans text-xs text-gray-400 leading-relaxed">
-                    Hospedagem das inteligências artificiais na nuvem privada de sua empresa (AWS, Azure, GCP) garantindo conformidade com a LGPD.
-                  </p>
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-white/10 mt-6">
-                  <span className="text-[8px] font-mono text-gray-500">// CLOUD SECURITY</span>
-                  <span className="text-[9px] font-mono text-brand-green uppercase tracking-wider">[ 03 ]</span>
-                </div>
-              </div>
-            </Card3D>
-
-          </div>
-
-        </div>
-      </section>
+      {/* Solutions Section (GSAP Scroll Slider) */}
+      <SolutionsHorizontal />
 
       {/* Contact Form Section */}
       <section id="contato" className="relative py-32 border-t border-white/5 z-10">
@@ -274,14 +189,14 @@ export default function Home() {
           
           <div className="max-w-3xl mb-16 flex flex-col gap-4">
             <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
-              [ 02 // CANAL DE PARCERIA ]
+              [ 03 // CANAL DE PARCERIA ]
             </span>
             <h2 className="font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tighter">
-              Inicie seu Projeto <br />
-              de Inteligência Artificial.
+              Inicie seu Website <br />
+              ou Projeto Digital.
             </h2>
             <p className="font-sans text-sm text-gray-400">
-              Descreva as dores operacionais e infraestrutura da sua empresa para abrirmos um canal direto de desenvolvimento.
+              Descreva as necessidades da sua empresa (Website, Aplicativo, SaaS, Automação ou IA) para abrirmos um canal direto de desenvolvimento.
             </p>
           </div>
 
@@ -359,11 +274,11 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-mono text-gray-400 uppercase">Desafio de IA</label>
+                  <label className="text-[10px] font-mono text-gray-400 uppercase">O que vamos desenvolver? (Website, App, SaaS, Automação, IA...)</label>
                   <textarea 
                     required
                     rows={4}
-                    placeholder="EX: GOSTARÍAMOS DE TREINAR UM MODELO PRIVADO PARA ATENDIMENTO FINANCEIRO..."
+                    placeholder="EX: PRECISAMOS DE UM WEBSITE INSTITUCIONAL PREMIUM E DE UMA AUTOMAÇÃO QUE SINCRONIZE NOSSOS LEADS COM O CRM..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="bg-black/40 border border-white/5 focus:border-brand-primary/50 text-xs font-mono text-gray-100 p-4 outline-none rounded-md resize-none transition-colors"
@@ -374,7 +289,7 @@ export default function Home() {
                   type="submit"
                   className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono tracking-widest bg-white text-black py-4 rounded-md font-bold hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-300 cursor-pointer"
                 >
-                  {isSent ? 'TICKET RECEBIDO!' : 'ENVIAR TICKET IA'}
+                  {isSent ? 'TICKET RECEBIDO!' : 'ENVIAR TICKET DO PROJETO'}
                 </button>
 
                 {isSent && (
@@ -393,7 +308,7 @@ export default function Home() {
               © 2026 KODAVA SOLUTIONS. TODOS OS DIREITOS RESERVADOS.
             </span>
             <span className="text-[10px] font-mono text-gray-500 uppercase">
-              // SEGURANÇA, INTELIGÊNCIA & ESCALABILIDADE
+              // WEBSITES, PLATAFORMAS & TECNOLOGIA DE ESCALA
             </span>
           </div>
 
