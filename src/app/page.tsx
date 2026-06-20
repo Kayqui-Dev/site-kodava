@@ -130,13 +130,29 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-28 overflow-hidden z-10">
+      <section className="relative min-h-screen flex items-end pb-16 sm:pb-24 pt-28 overflow-hidden z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_60%,transparent_100%)] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Hero text content */}
-          <div className="lg:col-span-7 flex flex-col gap-6 relative">
+        {/* Central Planet Background (behind text but interactive) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="relative w-[340px] h-[340px] md:w-[600px] md:h-[600px] lg:w-[680px] lg:h-[680px] pointer-events-auto">
+            {/* Glowing background behind asset */}
+            <div className="absolute inset-0 w-full h-full bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              className="w-full h-full flex items-center justify-center"
+            >
+              <HeroInteractivePlanet />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Hero text content - positioned at bottom-left */}
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 pointer-events-none">
+          <div className="flex flex-col gap-6 max-w-2xl pointer-events-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 max-w-fit">
               <Code className="w-3.5 h-3.5 text-brand-secondary" />
               <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
@@ -169,22 +185,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-          {/* Hero visual representation of Kodava */}
-          <div className="lg:col-span-5 flex justify-center items-center relative h-[380px] lg:h-[500px]">
-            {/* Glowing background behind asset */}
-            <div className="absolute w-80 h-80 bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="relative w-full h-full flex items-center justify-center"
-            >
-              <HeroInteractivePlanet />
-            </motion.div>
-          </div>
-
         </div>
       </section>
 

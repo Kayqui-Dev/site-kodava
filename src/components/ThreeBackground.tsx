@@ -91,29 +91,7 @@ export default function ThreeBackground() {
     const starField = new THREE.Points(geometry, material);
     scene.add(starField);
 
-    // Central Wireframe Globe
-    const sphereGeom = new THREE.IcosahedronGeometry(20, 2);
-    const sphereMat = new THREE.MeshBasicMaterial({
-      color: 0x0084ff,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.08,
-      blending: THREE.AdditiveBlending,
-    });
-    const networkSphere = new THREE.Mesh(sphereGeom, sphereMat);
-    scene.add(networkSphere);
-
-    // Node vertices
-    const nodesGeom = new THREE.BufferGeometry();
-    nodesGeom.setAttribute('position', sphereGeom.attributes.position.clone());
-    const nodesMat = new THREE.PointsMaterial({
-      size: 1.2,
-      color: 0x00e5ff,
-      transparent: true,
-      opacity: 0.3,
-    });
-    const networkNodes = new THREE.Points(nodesGeom, nodesMat);
-    networkSphere.add(networkNodes);
+    // Central Wireframe Globe removed - replaced by interactive 3D planet in Hero
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0x020210);
@@ -159,8 +137,7 @@ export default function ThreeBackground() {
       starField.rotation.y = time * 0.01;
       starField.rotation.x = scrollPercent * 0.5;
 
-      networkSphere.rotation.y = -time * 0.03;
-      networkSphere.rotation.x = time * 0.015;
+      // networkSphere rotation removed
 
       godLight.position.x = Math.sin(time * 0.5) * 40;
       godLight.position.y = Math.cos(time * 0.3) * 20 + (targetCamY * 0.4);
@@ -186,10 +163,7 @@ export default function ThreeBackground() {
       geometry.dispose();
       material.dispose();
       particleTexture.dispose();
-      sphereGeom.dispose();
-      sphereMat.dispose();
-      nodesGeom.dispose();
-      nodesMat.dispose();
+      // Geometries and materials disposed elsewhere
       renderer.dispose();
     };
   }, []);

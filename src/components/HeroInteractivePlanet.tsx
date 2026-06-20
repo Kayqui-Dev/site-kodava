@@ -105,6 +105,83 @@ const nodesData = [
     link: 'https://logguard.clyver.com.br/',
     color: '#00e5ff',
     details: 'Sistema de monitoramento contínuo de erros e logs de segurança. Alertas em tempo real integrados com canais corporativos e relatórios de conformidade e integridade.'
+  },
+  {
+    id: 'faculdadedaluta',
+    name: 'Faculdade da Luta',
+    type: 'project',
+    desc: 'Plataforma para gestão de alunos, treinos e eventos de artes marciais com dashboards integrados.',
+    tags: ['Cases', 'EdTech', 'Esportes', 'SaaS'],
+    image: '/images/projects/faculdade-da-luta.png',
+    link: 'https://v0-faculdade-da-luta-sandy.vercel.app/',
+    color: '#00ffcc',
+    details: 'Uma plataforma sob medida criada para automatizar a gestão de academias de luta, inscrições em campeonatos, e acompanhamento pedagógico/esportivo dos alunos.'
+  },
+  {
+    id: 'esportentg',
+    name: 'Esporte NTG',
+    type: 'project',
+    desc: 'Portal institucional e painel administrativo para gestão de torneios esportivos e resultados em tempo real.',
+    tags: ['Cases', 'Portal', 'Esportes', 'CMS'],
+    image: '/images/projects/esportentg.png',
+    link: 'https://esportentg.com.br/',
+    color: '#0084ff',
+    details: 'Portal de alta performance para torneios regionais. Conta com chaves de campeonatos geradas dinamicamente, tabelas de classificação automatizadas e transmissão de resultados.'
+  },
+  {
+    id: 'caprilsparta',
+    name: 'Capril Sparta',
+    type: 'project',
+    desc: 'E-commerce e sistema de controle de rebanho para pecuária caprina premium com rastreabilidade.',
+    tags: ['Cases', 'AgroTech', 'E-commerce', 'SaaS'],
+    image: '/images/projects/capril-sparta.png',
+    link: 'https://v0-capril-sparta.vercel.app/',
+    color: '#00e5ff',
+    details: 'Integração de loja virtual de produtos caprinos finos com sistema interno de rastreabilidade genética e produção leiteira em tempo real.'
+  },
+  {
+    id: 'acaiprototipo',
+    name: 'Açaí Delivery',
+    type: 'project',
+    desc: 'Aplicativo de delivery e cardápio digital interativo para franquias de açaí com pedidos diretos.',
+    tags: ['Cases', 'Delivery', 'PWA', 'FastFood'],
+    image: '/images/projects/acai-prototipo.png',
+    link: 'https://v0-acai-prototipo.vercel.app/',
+    color: '#00ffcc',
+    details: 'Aplicativo web progressivo (PWA) de alta conversão para pedidos automatizados, customização de ingredientes em tempo real e integração com PDV.'
+  },
+  {
+    id: 'evolaristech',
+    name: 'Evolaris Tech',
+    type: 'project',
+    desc: 'Landing page corporativa de tecnologia e consultoria de software para transformação digital.',
+    tags: ['Cases', 'Web', 'Corporate', 'Tech'],
+    image: '/images/projects/evolaris.png',
+    link: 'https://evolaris.tech/',
+    color: '#0084ff',
+    details: 'Design minimalista e interativo focado na apresentação de soluções tecnológicas robustas e captação de leads empresariais qualificados.'
+  },
+  {
+    id: 'visaodoproduto',
+    name: 'Visão do Produto',
+    type: 'project',
+    desc: 'Portal de conteúdo e ferramentas interativas sobre gestão de produto e estratégias ágeis.',
+    tags: ['Cases', 'EdTech', 'Agile', 'Product'],
+    image: '/images/projects/visao-do-produto.png',
+    link: 'https://visaodoproduto.com.br/',
+    color: '#00e5ff',
+    details: 'Hub completo de aprendizagem e frameworks práticos para Product Managers e Product Owners com dinâmicas colaborativas integradas.'
+  },
+  {
+    id: 'micdog',
+    name: 'Mic Dog Cloud',
+    type: 'project',
+    desc: 'SaaS completo para gestão de pet shops, clínicas veterinárias e controle de prontuários.',
+    tags: ['Cases', 'SaaS', 'HealthTech', 'ERP'],
+    image: '/images/projects/micdog.png',
+    link: 'https://micdog.cloud/',
+    color: '#00ffcc',
+    details: 'Sistema de gestão na nuvem para clínicas pet, contemplando agenda inteligente de banho e tosa, prontuário médico de animais, faturamento e controle de estoque.'
   }
 ];
 
@@ -430,7 +507,7 @@ export default function HeroInteractivePlanet() {
   return (
     <div 
       ref={containerRef} 
-      className="relative w-[320px] h-[320px] md:w-[480px] md:h-[480px] flex items-center justify-center cursor-crosshair select-none"
+      className="relative w-full h-full flex items-center justify-center cursor-crosshair select-none"
     >
       {/* ThreeJS WebGL canvas */}
       <canvas 
