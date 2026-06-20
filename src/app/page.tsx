@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Mail, MapPin, Phone, Code, Laptop } from 'lucide-react';
 import LogoSVG from '@/components/LogoSVG';
 import SolutionsHorizontal from '@/components/SolutionsHorizontal';
 import HeroTechAsset from '@/components/HeroTechAsset';
+import ProjectsHorizontal from '@/components/ProjectsHorizontal';
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
 function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)' }: { children: React.ReactNode; className?: string; glowColor?: string }) {
@@ -60,113 +61,9 @@ function Card3D({ children, className = '', glowColor = 'rgba(0, 132, 255, 0.08)
   );
 }
 
-const projects = [
-  {
-    title: 'Clyver Hub',
-    desc: 'Hub operacional unificado para integração de anúncios, estoque, mensagens de WhatsApp e antecipação de crédito.',
-    tags: ['SaaS', 'Fintech', 'E-commerce'],
-    image: '/images/projects/clyver.png',
-    link: 'https://clyver.com.br',
-    category: 'saas'
-  },
-  {
-    title: 'Centurion Scout',
-    desc: 'Sistema avançado de gestão, scout e controle de performance para atletas de artes marciais mistas (MMA).',
-    tags: ['Sistema', 'Esportes', 'Dashboard'],
-    image: '/images/projects/centurion-scout.png',
-    link: 'https://www.centurionfight.shop/auth/login',
-    category: 'saas'
-  },
-  {
-    title: 'Love Kodava',
-    desc: 'Plataforma B2C de presentes digitais personalizados, retrospectivas animadas e linhas do tempo interativas com tráfego massivo.',
-    tags: ['SaaS B2C', 'Escala', 'Animação'],
-    image: '/images/projects/love-kodava.png',
-    link: 'https://www.love-kodava.shop/',
-    category: 'saas'
-  },
-  {
-    title: 'LogGuard',
-    desc: 'Plataforma profissional de monitoramento, centralização e análise de logs de sistemas e APIs corporativas.',
-    tags: ['SaaS', 'DevOps', 'Segurança'],
-    image: '/images/projects/logguard.png',
-    link: 'https://logguard.clyver.com.br/',
-    category: 'saas'
-  },
-  {
-    title: 'NTG Wrestling',
-    desc: 'Website institucional premium e dinâmico para centro de treinamento de wrestling olímpico de alto rendimento.',
-    tags: ['Website', 'Institucional', 'Design'],
-    image: '/images/projects/esporte-ntg.png',
-    link: 'https://esportentg.com.br/',
-    category: 'web'
-  },
-  {
-    title: 'Capril Sparta',
-    desc: 'Portal institucional focado em caprinocultura, apicultura e agroecologia familiar com design rústico-minimalista.',
-    tags: ['Website', 'Agrobusiness', 'Institucional'],
-    image: '/images/projects/capril-sparta.png',
-    link: 'https://v0-capril-sparta.vercel.app/',
-    category: 'web'
-  },
-  {
-    title: 'Visão do Produto',
-    desc: 'Sistema inteligente baseado em IA para análise competitiva de preços e monitoramento de e-commerces concorrentes.',
-    tags: ['SaaS', 'Inteligência Artificial', 'BI'],
-    image: '/images/projects/visao-do-produto.png',
-    link: 'https://visaodoproduto.com.br/',
-    category: 'saas'
-  },
-  {
-    title: 'Faculdade da Luta',
-    desc: 'Sistema social para gestão de matrículas, chamadas automatizadas e controle de presença em projetos esportivos.',
-    tags: ['Sistema', 'Gestão Social', 'Dashboard'],
-    image: '/images/projects/faculdade-da-luta.png',
-    link: 'https://v0-faculdade-da-luta-sandy.vercel.app/',
-    category: 'saas'
-  },
-  {
-    title: 'EZ ERP Remave',
-    desc: 'Plataforma ERP corporativa de faturamento, controle de estoque, ordens de compras e relatórios fiscais.',
-    tags: ['Sistema', 'ERP', 'Enterprise'],
-    image: '/images/projects/remave-erp.png',
-    link: 'https://erp.remave.com.br/',
-    category: 'saas'
-  },
-  {
-    title: 'Açaí Puro',
-    desc: 'Landing page premium de alta conversão e cardápio dinâmico para marca artesanal de açaí orgânico.',
-    tags: ['Website', 'Premium', 'E-commerce'],
-    image: '/images/projects/acai-puro.png',
-    link: 'https://v0-acai-prototipo.vercel.app/',
-    category: 'web'
-  },
-  {
-    title: 'VTPDirect',
-    desc: 'Sistema corporativo seguro de controle de fluxos logísticos e despacho de mercadorias em tempo real.',
-    tags: ['Sistema', 'Logística', 'Security'],
-    image: '/images/projects/vtp-system.png',
-    link: 'https://vtpsystem.com.br/login.php',
-    category: 'saas'
-  },
-  {
-    title: 'Michael Douglas Portfolio',
-    desc: 'Website interativo e portfólio técnico com efeitos avançados de transições e micro-animações.',
-    tags: ['Website', 'Portfolio', 'Animação'],
-    image: '/images/projects/micdog.png',
-    link: 'https://micdog.cloud/',
-    category: 'web'
-  }
-];
-
 export default function Home() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSent, setIsSent] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredProjects = activeFilter === 'all'
-    ? projects
-    : projects.filter(p => p.category === activeFilter);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -434,105 +331,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Section */}
-      <section id="projetos" className="relative py-32 border-t border-white/5 z-10">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          
-          <div className="max-w-3xl mb-16 flex flex-col gap-4">
-            <span className="text-xs font-mono tracking-widest text-brand-primary uppercase">
-              [ 04 // CASES DE SUCESSO ]
-            </span>
-            <h2 className="font-serif font-black text-4xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 leading-tight tracking-tight">
-              Ecossistema de <br />
-              Cases Entregues.
-            </h2>
-            <p className="font-sans text-sm text-gray-400 max-w-xl">
-              Confira alguns dos ecossistemas digitais, websites de elite, aplicativos e sistemas complexos desenvolvidos sob medida pela Kodava.
-            </p>
-          </div>
-
-          {/* Filters */}
-          <div className="flex gap-3 mb-12 flex-wrap">
-            {['all', 'web', 'saas'].map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`text-[10px] font-mono tracking-widest px-6 py-2.5 rounded-full border transition-all duration-300 uppercase cursor-pointer ${
-                  activeFilter === filter
-                    ? 'bg-brand-primary border-brand-primary text-black font-bold shadow-[0_0_15px_rgba(0,132,255,0.25)]'
-                    : 'bg-zinc-900/40 border-white/5 text-gray-400 hover:text-white hover:border-white/10'
-                }`}
-              >
-                {filter === 'all' ? 'Tudo' : filter === 'web' ? 'Websites' : 'SaaS / Sistemas'}
-              </button>
-            ))}
-          </div>
-
-          {/* Grid of Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  key={project.title}
-                  className="group relative backdrop-blur-md bg-zinc-900/10 border border-white/5 hover:border-brand-primary/20 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col justify-between min-h-[380px]"
-                >
-                  {/* Image Container with Hover zoom */}
-                  <div className="relative aspect-video w-full overflow-hidden border-b border-white/5 bg-zinc-950">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Subtle Dark Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent pointer-events-none" />
-                  </div>
-
-                  {/* Details */}
-                  <div className="p-8 flex flex-col flex-grow justify-between gap-6">
-                    <div className="flex flex-col gap-4">
-                      {/* Tags */}
-                      <div className="flex gap-2 flex-wrap">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[8px] font-mono tracking-widest uppercase px-2 py-0.5 rounded bg-white/[0.02] border border-white/5 text-brand-secondary"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <h3 className="font-serif font-black text-2xl text-gray-100 group-hover:text-brand-primary transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="font-sans text-xs text-gray-400 leading-relaxed">
-                        {project.desc}
-                      </p>
-                    </div>
-
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-[10px] font-mono tracking-widest text-white border border-white/10 group-hover:border-brand-primary/30 group-hover:text-brand-primary py-3 rounded-lg justify-center transition-all duration-300 w-full hover:bg-brand-primary/[0.02] cursor-pointer"
-                    >
-                      ACESSAR PROJETO
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-        </div>
-      </section>
+      {/* Portfolio Section (GSAP Scroll Slider) */}
+      <ProjectsHorizontal />
 
       {/* Contact Form Section */}
       <section id="contato" className="relative py-32 border-t border-white/5 z-10">
