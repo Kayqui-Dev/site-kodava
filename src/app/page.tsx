@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Mail, MapPin, Phone, Code, Laptop } from 'lucide-react';
 import LogoSVG from '@/components/LogoSVG';
 import SolutionsHorizontal from '@/components/SolutionsHorizontal';
-import HeroTechAsset from '@/components/HeroTechAsset';
+import HeroInteractivePlanet from '@/components/HeroInteractivePlanet';
 import ProjectsHorizontal from '@/components/ProjectsHorizontal';
 
 // Custom 3D Tilt Card Component using Framer Motion Spring physics
@@ -181,7 +181,7 @@ export default function Home() {
               transition={{ duration: 1.2, ease: 'easeOut' }}
               className="relative w-full h-full flex items-center justify-center"
             >
-              <HeroTechAsset />
+              <HeroInteractivePlanet />
             </motion.div>
           </div>
 
