@@ -130,29 +130,14 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-end pb-16 sm:pb-24 pt-28 overflow-hidden z-10">
+      <section className="relative min-h-screen flex items-center pt-28 pb-16 lg:pb-0 overflow-hidden z-10">
+        {/* Grid lines background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_60%,transparent_100%)] pointer-events-none" />
 
-        {/* Central Planet Background (behind text but interactive) */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          <div className="relative w-[340px] h-[340px] md:w-[600px] md:h-[600px] lg:w-[680px] lg:h-[680px] pointer-events-auto">
-            {/* Glowing background behind asset */}
-            <div className="absolute inset-0 w-full h-full bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-              className="w-full h-full flex items-center justify-center"
-            >
-              <HeroInteractivePlanet />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Hero text content - positioned at bottom-left */}
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 pointer-events-none">
-          <div className="flex flex-col gap-6 max-w-2xl pointer-events-auto">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10 pointer-events-none">
+          
+          {/* Hero text content - positioned at bottom-left on large screens */}
+          <div className="lg:col-span-6 flex flex-col gap-6 relative pointer-events-auto order-2 lg:order-1 lg:self-end lg:pb-24">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.02] border border-white/5 max-w-fit">
               <Code className="w-3.5 h-3.5 text-brand-secondary" />
               <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
@@ -185,6 +170,22 @@ export default function Home() {
               </a>
             </div>
           </div>
+
+          {/* Hero visual representation (Planet) - positioned on the right */}
+          <div className="lg:col-span-6 flex justify-center items-center relative h-[340px] sm:h-[420px] md:h-[500px] lg:h-[600px] xl:h-[650px] w-full pointer-events-auto order-1 lg:order-2">
+            {/* Glowing background behind asset */}
+            <div className="absolute w-[240px] h-[240px] md:w-[400px] md:h-[400px] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              className="w-full h-full flex items-center justify-center"
+            >
+              <HeroInteractivePlanet />
+            </motion.div>
+          </div>
+
         </div>
       </section>
 

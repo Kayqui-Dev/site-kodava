@@ -199,6 +199,7 @@ export default function HeroInteractivePlanet() {
   const [clickedNode, setClickedNode] = useState<typeof nodesData[0] | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState('cursor-grab');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -302,22 +303,42 @@ export default function HeroInteractivePlanet() {
       const x = Math.cos(theta) * radiusAtY * sphereRadius;
       const z = Math.sin(theta) * radiusAtY * sphereRadius;
 
-      const nodeGeo = new THREE.SphereGeometry(0.7, 16, 16);
+      // Invisible bubble for generous click/hover targeting
+      const nodeGeo = new THREE.SphereGeometry(1.2, 16, 16);
       const nodeMat = new THREE.MeshBasicMaterial({
         color: new THREE.Color(nodeData.color),
         transparent: true,
-        opacity: 0.75,
+        opacity: 0,
+        depthWrite: false
       });
 
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
       nodeMesh.position.set(x, y * sphereRadius, z);
       nodeMesh.userData = { ...nodeData, index: idx };
       
-      planetGroup.add(nodeMesh);
-      nodeMeshes.push(nodeMesh);
+      // 1. Beautiful glowing core sphere
+      const coreGeo = new THREE.SphereGeometry(0.4, 16, 16);
+      const coreMat = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(nodeData.color),
+        transparent: true,
+        opacity: 0.95,
+      });
+      const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+      nodeMesh.add(coreMesh);
 
-      // Add a small aura halo ring to each node
-      const ringGeo = new THREE.RingGeometry(0.9, 1.2, 16);
+      // 2. Glowing glass atmospheric envelope
+      const glowGeo = new THREE.SphereGeometry(0.65, 16, 16);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(nodeData.color),
+        transparent: true,
+        opacity: 0.35,
+        blending: THREE.AdditiveBlending,
+      });
+      const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+      nodeMesh.add(glowMesh);
+
+      // 3. Rotating neon ring
+      const ringGeo = new THREE.RingGeometry(0.85, 1.05, 32);
       const ringMat = new THREE.MeshBasicMaterial({
         color: new THREE.Color(nodeData.color),
         transparent: true,
@@ -326,18 +347,38 @@ export default function HeroInteractivePlanet() {
       });
       const ringMesh = new THREE.Mesh(ringGeo, ringMat);
       nodeMesh.add(ringMesh);
+
+      planetGroup.add(nodeMesh);
+      nodeMeshes.push(nodeMesh);
     });
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
     scene.add(ambientLight);
 
-    // Raycasting
+    // Raycasting & Dragging Interaction variables
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     let currentHoveredMesh: THREE.Mesh | null = null;
     let localMouse = { x: 0, y: 0 };
     let hoverActive = false;
+
+    // Dragging physics state
+    let isDragging = false;
+    let dragDistance = 0;
+    let previousMousePosition = { x: 0, y: 0 };
+    let dragVelocity = { x: 0, y: 0 };
+    const autoRotationSpeed = 0.07;
+
+    const onContainerMouseDown = (e: MouseEvent) => {
+      isDragging = true;
+      dragDistance = 0;
+      previousMousePosition = {
+        x: e.clientX,
+        y: e.clientY
+      };
+      setCursorStyle('cursor-grabbing');
+    };
 
     const onContainerMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -348,18 +389,110 @@ export default function HeroInteractivePlanet() {
       // Normalized coordinates
       mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-      hoverActive = true;
+      
+      if (isDragging) {
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+        
+        dragDistance += Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        // Rotate planet group based on drag delta
+        planetGroup.rotation.y += deltaX * 0.007;
+        planetGroup.rotation.x += deltaY * 0.007;
+
+        // Set drag velocity for inertia
+        dragVelocity.x = deltaX * 0.007;
+        dragVelocity.y = deltaY * 0.007;
+
+        previousMousePosition = {
+          x: e.clientX,
+          y: e.clientY
+        };
+
+        // Disable hover raycasting when dragging
+        hoverActive = false;
+        currentHoveredMesh = null;
+        setHoveredNode(null);
+
+        // Hide laser SVG lines during drag
+        if (lineBgRef.current) lineBgRef.current.style.opacity = '0';
+        if (lineCoreRef.current) lineCoreRef.current.style.opacity = '0';
+        if (cursorDotRef.current) cursorDotRef.current.style.opacity = '0';
+      } else {
+        hoverActive = true;
+      }
+    };
+
+    const onContainerMouseUp = (e: MouseEvent) => {
+      isDragging = false;
+      setCursorStyle(currentHoveredMesh ? 'cursor-pointer' : 'cursor-grab');
+      
+      // Click detection if drag distance is tiny
+      if (dragDistance < 5) {
+        if (currentHoveredMesh) {
+          setClickedNode(currentHoveredMesh.userData as any);
+        }
+      }
+    };
+
+    // Mobile touch events
+    const onContainerTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        dragDistance = 0;
+        previousMousePosition = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY
+        };
+      }
+    };
+
+    const onContainerTouchMove = (e: TouchEvent) => {
+      if (isDragging && e.touches.length === 1) {
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+        
+        dragDistance += Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        planetGroup.rotation.y += deltaX * 0.007;
+        planetGroup.rotation.x += deltaY * 0.007;
+
+        dragVelocity.x = deltaX * 0.007;
+        dragVelocity.y = deltaY * 0.007;
+
+        previousMousePosition = {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY
+        };
+        
+        hoverActive = false;
+        currentHoveredMesh = null;
+        setHoveredNode(null);
+
+        if (lineBgRef.current) lineBgRef.current.style.opacity = '0';
+        if (lineCoreRef.current) lineCoreRef.current.style.opacity = '0';
+        if (cursorDotRef.current) cursorDotRef.current.style.opacity = '0';
+      }
+    };
+
+    const onContainerTouchEnd = () => {
+      isDragging = false;
     };
 
     const onContainerMouseEnter = () => {
       setIsHovering(true);
+      if (!isDragging) {
+        setCursorStyle('cursor-grab');
+      }
     };
 
     const onContainerMouseLeave = () => {
       setIsHovering(false);
+      isDragging = false;
       hoverActive = false;
       currentHoveredMesh = null;
       setHoveredNode(null);
+      setCursorStyle('cursor-grab');
       
       // Clear SVG lines
       if (lineBgRef.current) lineBgRef.current.style.opacity = '0';
@@ -367,16 +500,15 @@ export default function HeroInteractivePlanet() {
       if (cursorDotRef.current) cursorDotRef.current.style.opacity = '0';
     };
 
-    const onContainerClick = () => {
-      if (currentHoveredMesh) {
-        setClickedNode(currentHoveredMesh.userData as any);
-      }
-    };
-
+    container.addEventListener('mousedown', onContainerMouseDown, { passive: true });
     container.addEventListener('mousemove', onContainerMouseMove, { passive: true });
+    container.addEventListener('mouseup', onContainerMouseUp, { passive: true });
+    container.addEventListener('touchstart', onContainerTouchStart, { passive: true });
+    container.addEventListener('touchmove', onContainerTouchMove, { passive: true });
+    container.addEventListener('touchend', onContainerTouchEnd, { passive: true });
+    
     container.addEventListener('mouseenter', onContainerMouseEnter, { passive: true });
     container.addEventListener('mouseleave', onContainerMouseLeave, { passive: true });
-    container.addEventListener('click', onContainerClick, { passive: true });
 
     // Animation Loop
     let reqId: number;
@@ -386,29 +518,49 @@ export default function HeroInteractivePlanet() {
       reqId = requestAnimationFrame(animate);
       const time = clock.getElapsedTime();
 
-      // Rotate planet group. Add minor tilt based on cursor coordinates for organic physics
-      const targetRotY = time * 0.07 + (hoverActive ? mouse.x * 0.25 : 0);
-      const targetRotX = time * 0.035 - (hoverActive ? mouse.y * 0.2 : 0);
-      
-      planetGroup.rotation.y += (targetRotY - planetGroup.rotation.y) * 0.05;
-      planetGroup.rotation.x += (targetRotX - planetGroup.rotation.x) * 0.05;
+      if (isDragging) {
+        // Rotations are handled directly in mousemove
+      } else {
+        // Apply inertia decay (damping velocity)
+        dragVelocity.x *= 0.95;
+        dragVelocity.y *= 0.95;
+
+        planetGroup.rotation.y += dragVelocity.x;
+        planetGroup.rotation.x += dragVelocity.y;
+
+        // If drag velocity slows down, blend back to automatic rotation
+        if (Math.abs(dragVelocity.x) < 0.001) {
+          planetGroup.rotation.y += autoRotationSpeed * 0.05;
+        }
+        if (Math.abs(dragVelocity.y) < 0.001) {
+          planetGroup.rotation.x += autoRotationSpeed * 0.025;
+        }
+      }
+
+      // Rotate planet points separately for parallax depth
+      planetPoints.rotation.y = time * -0.02;
 
       // Pulse auras and nodes
       nodeMeshes.forEach((mesh) => {
         const idx = mesh.userData.index;
         const scale = 1 + Math.sin(time * 3 + idx) * 0.08;
-        mesh.scale.set(scale, scale, scale);
         
-        // Aura rotation
-        const ring = mesh.children[0] as THREE.Mesh;
+        // Scale inner core and outer glow bubble
+        const core = mesh.children[0] as THREE.Mesh;
+        const glow = mesh.children[1] as THREE.Mesh;
+        if (core) core.scale.set(scale, scale, scale);
+        if (glow) glow.scale.set(scale * 1.1, scale * 1.1, scale * 1.1);
+        
+        // Rotate and lookAt for rings
+        const ring = mesh.children[2] as THREE.Mesh;
         if (ring) {
-          ring.rotation.z += 0.01;
+          ring.rotation.z += 0.02;
           ring.lookAt(camera.position);
         }
       });
 
       // Raycasting for mouse collision
-      if (hoverActive) {
+      if (hoverActive && !isDragging) {
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(nodeMeshes);
 
@@ -418,8 +570,9 @@ export default function HeroInteractivePlanet() {
           if (currentHoveredMesh !== hoveredObj) {
             currentHoveredMesh = hoveredObj;
             setHoveredNode(hoveredObj.userData as any);
+            setCursorStyle('cursor-pointer');
             
-            // Trigger feedback haptic/audio if supported
+            // Trigger feedback haptic
             if (navigator.vibrate) navigator.vibrate(5);
           }
 
@@ -453,8 +606,11 @@ export default function HeroInteractivePlanet() {
             cursorDotRef.current.setAttribute('fill', hoveredObj.userData.color);
           }
         } else {
-          currentHoveredMesh = null;
-          setHoveredNode(null);
+          if (currentHoveredMesh) {
+            currentHoveredMesh = null;
+            setHoveredNode(null);
+            setCursorStyle('cursor-grab');
+          }
 
           // Hide laser SVG line
           if (lineBgRef.current) lineBgRef.current.style.opacity = '0';
@@ -481,10 +637,15 @@ export default function HeroInteractivePlanet() {
     return () => {
       cancelAnimationFrame(reqId);
       window.removeEventListener('resize', handleResize);
+      
+      container.removeEventListener('mousedown', onContainerMouseDown);
       container.removeEventListener('mousemove', onContainerMouseMove);
+      container.removeEventListener('mouseup', onContainerMouseUp);
+      container.removeEventListener('touchstart', onContainerTouchStart);
+      container.removeEventListener('touchmove', onContainerTouchMove);
+      container.removeEventListener('touchend', onContainerTouchEnd);
       container.removeEventListener('mouseenter', onContainerMouseEnter);
       container.removeEventListener('mouseleave', onContainerMouseLeave);
-      container.removeEventListener('click', onContainerClick);
       
       // Clean up ThreeJS geometries
       sphereGeo.dispose();
@@ -495,10 +656,20 @@ export default function HeroInteractivePlanet() {
       nodeMeshes.forEach((mesh) => {
         mesh.geometry.dispose();
         if (Array.isArray(mesh.material)) {
-          mesh.material.forEach((mat) => mat.dispose());
+          mesh.material.forEach((mat: any) => mat.dispose());
         } else {
           mesh.material.dispose();
         }
+        mesh.children.forEach((child: any) => {
+          if (child.geometry) child.geometry.dispose();
+          if (child.material) {
+            if (Array.isArray(child.material)) {
+              child.material.forEach((mat: any) => mat.dispose());
+            } else {
+              child.material.dispose();
+            }
+          }
+        });
       });
       renderer.dispose();
     };
@@ -507,7 +678,7 @@ export default function HeroInteractivePlanet() {
   return (
     <div 
       ref={containerRef} 
-      className="relative w-full h-full flex items-center justify-center cursor-crosshair select-none"
+      className={`relative w-full h-full flex items-center justify-center select-none ${cursorStyle}`}
     >
       {/* ThreeJS WebGL canvas */}
       <canvas 
